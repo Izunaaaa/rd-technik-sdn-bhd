@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RD Technik Sdn Bhd | Mechanical & Electrical Engineering Specialists</title>
+    
+    <!-- Premium International Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- External Animation Core Libraries (AOS & GSAP) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Inline Premium Base CSS to ensure critical rendering matches the 5k standard -->
+    <style>
+        :root {
+            --cls-royal: #0F172A;
+            --cls-gold: #C5A059;
+            --cls-obsidian: #1E293B;
+            --cls-text-main: #334155;
+            --cls-pure-white: #FFFFFF;
+            --cls-slate-border: rgba(226, 232, 240, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-blur: blur(20px);
+            --premium-glow: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAFAFA; color: var(--cls-text-main); margin:0; }
+
+        /* Smooth Interactive Header Updates */
+        .hss-navbar {
+            position: fixed; top: 80px; left: 0; width: 100%; z-index: 999;
+            transition: all 0.5s var(--premium-glow);
+        }
+        .hss-navbar.scrolled {
+            top: 0; background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* Hero Interactivity Layout */
+        .hss-hero-container {
+            position: relative; overflow: hidden; height: 100vh; display: flex; align-items: center;
+            background-color: #000; /* Letak background hitam jika gambar lambat loading */
+        }
+        .hss-hero-img {
+            position: absolute; top:0; left:0; width:100%; height:100%; object-fit: cover;
+            transform: scale(1); transition: transform 0.8s var(--premium-glow); z-index: 1;
+        }
+
+        /* KEMAS KINI: Dipastikan overlay tidak menutup gambar latar belakang */
+        .hss-hero-overlay-dark {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.7)); 
+            z-index: 2; /* Berada di atas gambar sedikit untuk mudahkan text dibaca */
+        }
+
+        /* Pastikan text berada paling atas sekali supaya tidak tenggelam di belakang gambar */
+        .hss-text-overlay {
+            position: relative;
+            z-index: 3;
+            padding: 0 10%;
+        }
+
+        /* Interactive Tabs for Vision & Mission */
+        .vm-interactive-trigger {
+            cursor: pointer; padding: 20px; border-radius: 12px; margin-bottom: 15px;
+            border: 1px solid var(--cls-slate-border); transition: all 0.4s ease;
+            background: var(--cls-pure-white); position: relative; overflow: hidden;
+        }
+        .vm-interactive-trigger.active {
+            border-color: var(--cls-gold); background: linear-gradient(90deg, #FDFBF7 0%, #FFFFFF 100%);
+            box-shadow: 0 10px 25px -5px rgba(197, 160, 89, 0.1);
+        }
+        .vm-content-body {
+            max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; opacity: 0;
+        }
+        .vm-interactive-trigger.active .vm-content-body {
+            max-height: 200px; opacity: 1; margin-top: 15px;
+        }
+
+        /* Shimmer Premium Card Effect */
+        .premium-shimmer-card {
+            position: relative; overflow: hidden; transition: transform 0.4s var(--premium-glow);
+        }
+        .premium-shimmer-card::before {
+            content: ''; position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); transition: 0.75s;
+        }
+        .premium-shimmer-card:hover::before { left: 150%; }
+        .premium-shimmer-card:hover { transform: translateY(-5px); }
+
+        /* Dynamic Magnetic Button */
+        .hss-btn, .hss-nav-fast-btn {
+            position: relative; display: inline-flex; align-items: center; transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hss-btn:hover { transform: scale(1.03); }
+        
+        /* Pastikan text putih nampak jelas atas gambar */
+        .hss-main-title { color: #ffffff !important; }
+        .hss-sub-title { color: #f1f5f9 !important; }
+        .hss-desc { color: #cbd5e1 !important; max-width: 700px; }
+        .hss-pre-title { color: var(--cls-gold) !important; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <!-- LAYER 1: CORPORATE TOP BAR -->
+    <header class="hss-top-header">
+        <div class="hss-logo-box">
+            <img src="page_1.png" alt="RD Technik Corporate Logo" class="hss-logo">
+        </div>
+        <div class="hss-slogan-box">
+            <p class="hss-slogan-text">
+                THE ENGINEERING SPECIALISTS
+                <span class="sub-slogan">Mechanical & Electrical Services</span>
+            </p>
+        </div>
+    </header>
+
+<!-- LAYER 2: PREMIUM BLUR NAVIGATION (With Live Track Interactivity) -->
+<nav class="hss-navbar" id="dynamic-navbar">
+    <div class="hss-nav-container">
+        <div class="hss-nav-links-wrapper">
+            <a href="#home" class="hss-nav-link active">Home</a>
+            <a href="#about" class="hss-nav-link">About Us</a>
+            <a href="#vision-mission" class="hss-nav-link">Vision & Mission</a>
+            <a href="#profile" class="hss-nav-link">Our Profile</a>
+            <a href="#company-certificates" class="hss-nav-link">Certificates</a> <!-- Tambah link ke seksi sijil -->
+            <a href="#services" class="hss-nav-link">Our Services</a>
+            <a href="#gallery" class="hss-nav-link">Our Works</a>
+            <a href="#profile" class="hss-nav-link">Contact</a> <!-- Dah dihalakan terus ke ID #profile -->
+        </div>
+        <div class="hss-nav-cta">
+            <a href="https://wa.me/601341443676" class="hss-nav-fast-btn">Get In Touch</a> <!-- Dah dihalakan terus ke ID #profile -->
+        </div>
+    </div>
+</nav>
+
+    <!-- LAYER 3: CINEMATIC HERO PANORAMA (Gunakan file gambar pilihan anda di 'src') -->
+    <section id="home" class="hss-hero-container">
+        <!-- Lapisan gelap lutsinar diletakkan supaya text putih kekal senang dibaca -->
+        <div class="hss-hero-overlay-dark"></div>
+        
+        <!-- TUKAR NAMA GAMBAR DI SINI: Gantikan 'page_1.jpg' dengan nama file gambar background anda jika perlu -->
+        <img src="page_1.jpg" alt="RD Technik High-Scale Engineering Project" class="hss-hero-img" id="hero-kinetic-img">
+        
+        <div class="hss-text-overlay" data-aos="fade-up" data-aos-duration="1500">
+            <div class="hss-accent-bar-wrapper">
+                <span class="hss-pre-title">Welcome to RD Technik</span>
+                <div class="hss-accent-bar"></div>
+            </div>
+            <h1 class="hss-main-title">RD TECHNIK <span class="text-gradient">SDN BHD</span></h1>
+            <p class="hss-sub-title">Precision. Innovation. Regulatory Excellence.</p>
+            <p class="hss-desc">Delivering institutional-grade mechanical and electrical engineering frameworks. We power high-tier residential complexes, high-output commercial hubs, and heavy industrial infrastructures with uncompromising precision.</p>
+            
+            <div class="hss-btn-wrapper">
+                <a href="#services" class="hss-btn btn-blue">Explore Our Services <span class="arrow-icon">→</span></a>
+                <a href="#profile" class="hss-btn btn-trans">Corporate Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAYER 4: ARCHITECTURAL ABOUT SECTION -->
+    <section id="about" class="hss-about-section">
+        <div class="hss-decorative-grid"></div>
+        <div class="hss-about-container">
+            
+            <div class="about-content-col" data-aos="fade-right" data-aos-duration="1200">
+                <span class="about-badge">Executive Summary</span>
+                <h2 class="about-main-heading">ENGINEERING THE<br><span class="text-highlight">FUTURE TODAY</span></h2>
+                <div class="about-underline"></div>
+                
+                <p class="about-p highlighting">
+                    Established in 2021, <strong>RD Technik Sdn Bhd</strong> has rapidly consolidated its position as an elite engineering force, engineering customized high-performance frameworks across crucial industrial, commercial, and private sectors.
+                </p>
+                
+                <p class="about-p">
+                    We do not just construct systems; we build absolute operational continuity. Our engineering cohorts orchestrate robust electrical layouts and complex system integrations while continuously exceeding Malaysia's highest regulatory benchmarks for total project safety and resilience.
+                </p>
+                
+                <p class="about-p text-muted">
+                    Driven by technical precision and forward-thinking engineering design, RD Technik serves as a lifetime infrastructure asset partner to institutional property developers and facility managers nationwide.
+                </p>
+            </div>
+
+            <div class="about-visual-col" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                <div class="image-box-wrapper-premium premium-shimmer-card">
+                    <div class="image-border-glow"></div>
+                    <img src="page_1.jpg" alt="Industrial Grade Engineering Execution" class="about-img-main">
+                    <div class="experience-badge-premium">
+                        <span class="exp-number">SINCE</span>
+                        <span class="exp-text">2021</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LAYER 5: INTERACTIVE VISION & MISSION CORRIDOR -->
+    <section id="vision-mission" class="hss-about-section" style="background-color: var(--cls-pure-white); border-top: 1px solid var(--cls-slate-border);">
+        <div class="hss-decorative-grid" style="left: 0; right: auto; background-image: radial-gradient(rgba(197, 160, 89, 0.04) 1.5px, transparent 1.5px);"></div>
+        <div class="hss-about-container" style="gap: 60px;">
+            
+            <div class="about-visual-col" data-aos="fade-right" data-aos-duration="1200">
+                <div class="image-box-wrapper-premium premium-shimmer-card">
+                    <div class="image-border-glow" style="border-color: rgba(197, 160, 89, 0.15);"></div>
+                    <img src="page_6.jpg" alt="RD Technik Vision and Mission Blueprint" class="about-img-main" style="height: 560px;">
+                </div>
+            </div>
+
+            <!-- Fully Dynamic Interactive Tab Corridor Content -->
+            <div class="about-content-col" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                <span class="about-badge" style="color: var(--cls-gold); background-color: rgba(197, 160, 89, 0.08);">Strategic Direction</span>
+                <h2 class="about-main-heading">VISION & <span class="text-highlight" style="color: var(--cls-obsidian);">MISSION</span></h2>
+                <div class="about-underline" style="background: linear-gradient(90deg, var(--cls-gold), transparent); margin-bottom: 35px;"></div>
+
+                <!-- Interactive Tab: Vision -->
+                <div class="vm-interactive-trigger active" onclick="toggleVMTab(this)">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="hss-premium-icon" style="background-color: rgba(197, 160, 89, 0.1); position: relative; width: 40px; height: 40px; border-radius: 50%;">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background-color: var(--cls-gold); border-radius: 50%;"></div>
+                        </div>
+                        <h4 style="letter-spacing: 1px; color: var(--cls-obsidian); font-weight: 800; margin: 0;">OUR VISION (CLICK TO EXPAND)</h4>
+                    </div>
+                    <div class="vm-content-body">
+                        <p style="text-align: justify; color: var(--cls-text-main); font-weight: 500; font-size: 0.98rem; line-height: 1.7; text-transform: uppercase; margin: 0;">
+                            To be the electrical contractor of choice in Malaysia — renowned for delivering high-quality, safe, and innovative solutions that meet the evolving needs of our clients and the industry.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Tab: Mission -->
+                <div class="vm-interactive-trigger" onclick="toggleVMTab(this)">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="hss-premium-icon" style="background-color: rgba(15, 23, 42, 0.1); position: relative; width: 40px; height: 40px; border-radius: 50%;">
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background-color: var(--cls-royal); border-radius: 50%;"></div>
+                        </div>
+                        <h4 style="letter-spacing: 1px; color: var(--cls-royal); font-weight: 800; margin: 0;">OUR MISSION CORE</h4>
+                    </div>
+                    <div class="vm-content-body" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; gap: 12px; align-items: start;">
+                            <div class="mini-accent-dot" style="margin-top: 6px; background-color: var(--cls-gold); flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;"></div>
+                            <p style="font-size: 0.93rem; color: var(--cls-text-main); margin: 0; text-transform: uppercase; font-weight: 500;">To deliver professional electrical services aligned with client needs.</p>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: start; border-top: 1px solid #F1F5F9; padding-top: 8px;">
+                            <div class="mini-accent-dot" style="margin-top: 6px; background-color: var(--cls-gold); flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;"></div>
+                            <p style="font-size: 0.93rem; color: var(--cls-text-main); margin: 0; text-transform: uppercase; font-weight: 500;">Uphold strict compliance with national safety standards & regulations.</p>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: start; border-top: 1px solid #F1F5F9; padding-top: 8px;">
+                            <div class="mini-accent-dot" style="margin-top: 6px; background-color: var(--cls-gold); flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;"></div>
+                            <p style="font-size: 0.93rem; color: var(--cls-text-main); margin: 0; text-transform: uppercase; font-weight: 500;">Cultivate a highly skilled, dedicated, and ethical technical force.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+  <!-- LAYER 6: INSTITUTIONAL PROFILE SECTION (Enhanced Interactive Ledger) -->
+<section id="profile" class="hss-profile-section">
+    <div class="hss-profile-container">
+        
+        <div class="profile-header-box" data-aos="fade-up" data-aos-duration="1000">
+            <div class="profile-accent-bar"></div>
+            <h2 class="profile-main-heading">CORPORATE CREDENTIALS</h2>
+            <p class="profile-sub-heading">Official statutory registration, governance compliance, and corporate matrix.</p>
+        </div>
+
+        <div class="profile-grid-layout">
+            
+            <!-- Main Corporate Ledger Card -->
+            <div class="profile-main-card-premium premium-shimmer-card" data-aos="fade-right" data-aos-duration="1200">
+                <div class="card-glass-shine"></div>
+                <div class="company-status-badge">Incorporated Entity</div>
+                <h3 class="profile-co-name">RD TECHNIK SDN. BHD.</h3>
+                <div class="reg-number-wrapper">
+                    <span class="reg-label">Registration Identity</span>
+                    <p class="profile-co-reg">202101026152 <span class="reg-alt">(1426452-U)</span></p>
+                </div>
+                
+                <div class="profile-divider-premium"></div>
+                
+                <div class="info-ledger-rows">
+                    <div class="info-row-item-premium">
+                        <span class="info-label-p">Date of Incorporation</span>
+                        <span class="info-value-p">06 August 2021</span>
+                    </div>
+                    <div class="info-row-item-premium">
+                        <span class="info-label-p">Authorised Share Capital</span>
+                        <span class="info-value-p text-gold">RM 157,002.00</span>
+                    </div>
+                    <div class="info-row-item-premium">
+                        <span class="info-label-p">Entity Type</span>
+                        <span class="info-value-p">Private Limited Company</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE GET IN TOUCH DETAILS GRID -->
+            <div class="profile-details-grid-premium">
+                
+                <!-- Alamat (Klik untuk Navigasi) -->
+                <a href="https://maps.google.com/?q=Wangsa+Link+Kuala+Lumpur" target="_blank" class="profile-sub-card-premium premium-interactive-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="hss-premium-icon icon-location">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="card-info-text-premium">
+                        <h4>Registered Headquarters</h4>
+                        <p>No. 23-1, Block 3B, Jalan Wangsa Delima 10, Wangsa Link, 53300 Kuala Lumpur, W.P. Kuala Lumpur</p>
+                        <span class="action-trigger-text">Launch Navigation →</span>
+                    </div>
+                </a>
+
+                <!-- Hubungan Telefon & Emel (Klik untuk Call / Email) -->
+                <div class="profile-sub-card-premium contact-split-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <a href="tel:0341443676" class="contact-action-row">
+                        <div class="hss-premium-icon icon-phone">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="card-info-text-premium">
+                            <h4>Communications Desk</h4>
+                            <p class="comm-line">03 - 4144 3676</p>
+                            <span class="action-trigger-text">Place Voice Call →</span>
+                        </div>
+                    </a>
+                    
+                    <div class="card-internal-divider"></div>
+
+                    <a href="mailto:rdtechniksb@gmail.com" class="contact-action-row">
+                        <div class="hss-premium-icon icon-email">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="card-info-text-premium">
+                            <h4>Instant Mail Response</h4>
+                            <p class="comm-line">rdtechniksb@gmail.com</p>
+                            <span class="action-trigger-text">Open Secure Mailer →</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Akreditasi Pihak Berkuasa -->
+                <div class="profile-sub-card-premium highlight-governing-premium" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="hss-premium-icon icon-secure">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div class="card-info-text-premium">
+                        <h4>Statutory Accreditations</h4>
+                        <div class="accreditation-tags">
+                            <span class="tag-cidb">CIDB GRADE G4 <small>(B04, CE21, M15)</small></span>
+                            <span class="tag-st">SURUHANJAYA TENAGA</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Extended Matrix Block (Infinity Fluid Slider Component) -->
+        <div class="profile-extended-container">
+            <div class="extended-block" data-aos="fade-up" data-aos-duration="1200">
+                <h3 class="extended-title">REGULATORY ACCREDITATION & BANKING PARTNERS</h3>
+                <div class="hss-logo-slider-premium">
+                    <div class="hss-logo-track-premium">
+                        <div class="gov-logo-box"><img src="cidb malaysia.png" alt="CIDB Malaysia" class="slider-img"></div>
+                        <div class="gov-logo-box"><img src="ssm.webp" alt="SSM Malaysia" class="slider-img"></div>
+                        <div class="gov-logo-box"><img src="LHDN_logo.png" alt="LHDN Malaysia" class="slider-img"></div>
+                        <div class="gov-logo-box"><img src="Suruhanjaya-Tenaga-01.png.webp" alt="Suruhanjaya Tenaga" class="slider-img"></div>
+                        <div class="gov-logo-box bank-bg"><img src="maybank.webp" alt="Maybank Corporate Banking" class="slider-img"></div>
+                        
+                        <!-- Clone Set -->
+                        <div class="gov-logo-box"><img src="cidb malaysia.png" alt="CIDB Malaysia" class="slider-img"></div>
+                        <div class="gov-logo-box"><img src="ssm.webp" alt="SSM Malaysia" class="slider-img"></div>
+                        <div class="gov-logo-box"><img src="LHDN_logo.png" alt="LHDN Malaysia" class="slider-img"></div>
+                        <div class="gov-logo-box"><img src="Suruhanjaya-Tenaga-01.png.webp" alt="Suruhanjaya Tenaga" class="slider-img"></div>
+                        <div class="gov-logo-box bank-bg"><img src="maybank.webp" alt="Maybank Corporate Banking" class="slider-img"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Infrastructure Grid -->
+            <div class="corporate-affiliates-grid-premium">
+                <div class="affiliate-card-premium premium-shimmer-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                    <div class="affiliate-header-premium">
+                        <div class="mini-accent-dot"></div>
+                        <h4>STATUTORY AUDITOR</h4>
+                    </div>
+                    <p class="affiliate-name-premium">ABDUL RAJI & CO. <span class="firm-code">(AF-1064)</span></p>
+                    <p class="affiliate-sub-premium">Chartered Accountants</p>
+                    <p class="affiliate-address-premium">B16-9, Block B, Megan Avenue II, 12 Jalan Yap Kwang Seng, 50450 Kuala Lumpur</p>
+                </div>
+
+                <div class="affiliate-card-premium premium-shimmer-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                    <div class="affiliate-header-premium">
+                        <div class="mini-accent-dot"></div>
+                        <h4>CORPORATE SECRETARY</h4>
+                    </div>
+                    <p class="affiliate-name-premium">RAHILA BINTI MOHAMED ANUAR</p>
+                    <p class="affiliate-sub-premium">Licensed Secretary (LS0010004) / CO AKI</p>
+                    <p class="affiliate-address-premium">No. 84-1, Bangunan Salasiah, Jalan Wangsa Delima 6, Pusat Bandar Wangsa Maju (KLSC), 53300 W.P. Kuala Lumpur</p>
+                </div>
+
+                <div class="affiliate-card-premium banker-card-premium premium-shimmer-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div class="affiliate-header-premium">
+                        <div class="mini-accent-dot gold-dot"></div>
+                        <h4>PRINCIPAL INSTITUTIONAL BANKER</h4>
+                    </div>
+                    <p class="affiliate-name-premium">MALAYAN BANKING BERHAD</p>
+                    <p class="affiliate-sub-premium">Wangsa Maju Main Corporate Branch</p>
+                    <p class="affiliate-address-premium">Seksyen 5, Wangsa Maju, No. 2 & 2A, Tingkat Bawah & Satu, Jalan Wangsa Delima 11, D'Wangsa, KLSC, 53300 Kuala Lumpur</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <!-- LAYER 7: PREMIUM BUSINESS & EXPERTISE GRID -->
+    <section id="services" class="hss-expertise-section">
+        <div class="hss-decorative-grid-expertise"></div>
+        
+        <div class="hss-expertise-container">
+            <!-- Header Section -->
+            <div class="expertise-header-box">
+                <div class="expertise-badge">Core Capabilities</div>
+                <h2 class="expertise-main-heading">Our Business <span class="text-highlight">& Expertise</span></h2>
+                <div class="expertise-underline"></div>
+                <p class="expertise-sub-heading">At RD Technik Sdn Bhd, we offer a comprehensive suite of solutions to support projects of varying scales, including:</p>
+            </div>
+
+            <!-- Asymmetric Chevron Grid Matrix with Premium Photos -->
+            <div class="expertise-chevron-matrix">
+                
+                <!-- Item 1: Left Chevron -->
+                <div class="expert-chevron-card chevron-left premium-shimmer-card">
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num">01</span>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="enginneer.jpg" alt="Engineering and Consultancy" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-content-core">
+                        <h4>Engineering And Consultancy Services</h4>
+                        <p>Technical advisory and customized solutions for efficient project delivery.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2: Right Chevron -->
+                <div class="expert-chevron-card chevron-right premium-shimmer-card">
+                    <div class="chevron-content-core">
+                        <h4>Electrical Works for New and Renovated Buildings</h4>
+                        <p>Full-scope electrical installations tailored to residential, commercial, and industrial needs.</p>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="electrical.jpg" alt="Electrical Building Works" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num gold-num">02</span>
+                    </div>
+                </div>
+
+                <!-- Item 3: Left Chevron -->
+                <div class="expert-chevron-card chevron-left premium-shimmer-card">
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num">03</span>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="schedule.jpg" alt="Scheduled Maintenance" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-content-core">
+                        <h4>Scheduled Maintenance and System Inspections</h4>
+                        <p>Routine checks and servicing to ensure continued performance and safety compliance.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4: Right Chevron -->
+                <div class="expert-chevron-card chevron-right premium-shimmer-card">
+                    <div class="chevron-content-core">
+                        <h4>Lightning Protection and Earthing System Installations</h4>
+                        <p>Design and deployment of protection systems to safeguard buildings and infrastructure.</p>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="lightning.jpg" alt="Lightning Protection" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num gold-num">04</span>
+                    </div>
+                </div>
+
+                <!-- Item 5: Left Chevron -->
+                <div class="expert-chevron-card chevron-left premium-shimmer-card">
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num">05</span>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="underground.jpg" alt="Underground Electrical Infrastructure" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-content-core">
+                        <h4>Underground Electrical Infrastructure Works</h4>
+                        <p>Subsurface cabling and infrastructure solutions supporting power distribution networks.</p>
+                    </div>
+                </div>
+
+                <!-- Item 6: Right Chevron -->
+                <div class="expert-chevron-card chevron-right premium-shimmer-card">
+                    <div class="chevron-content-core">
+                        <h4>Air-Conditioning and Mechanical Ventilation (ACMV)</h4>
+                        <p>Installation and servicing of ACMV systems for optimal indoor environmental control.</p>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="air.jpg" alt="ACMV Systems" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num gold-num">06</span>
+                    </div>
+                </div>
+
+                <!-- Item 7: Left Chevron -->
+                <div class="expert-chevron-card chevron-left premium-shimmer-card">
+                    <div class="chevron-number-wrapper">
+                        <span class="chevron-num">07</span>
+                    </div>
+                    <!-- Photo Wrapper -->
+                    <div class="expertise-photo-wrapper">
+                        <img src="sanitary.jpg" alt="Sanitary and Plumbing Systems" class="expertise-core-img">
+                    </div>
+                    <div class="chevron-content-core">
+                        <h4>Sanitary and Cold-Water Plumbing Systems</h4>
+                        <p>Plumbing solutions including freshwater delivery and sanitary discharge systems.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Injection of Core High-Fidelity Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize Premium Static Reveal Elements
+        AOS.init({ 
+            once: true,
+            easing: 'ease-out-cubic',
+            delay: 50
+        });
+
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 1. Interactive Dynamic Scroll Navbar Matrix
+        const navbar = document.getElementById('dynamic-navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Kinetic Parallax Scaling on Hero Background
+        gsap.to("#hero-kinetic-img", {
+            scrollTrigger: {
+                trigger: "#home",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            scale: 1.18,
+            y: 60,
+            ease: "none"
+        });
+
+        // 3. Interactive Vision & Mission Accordion Logic
+        function toggleVMTab(element) {
+            document.querySelectorAll('.vm-interactive-trigger').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // 4. Live Active Link Tracker Engine
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".hss-nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<section id="our-team" class="hss-team-section">
+    <div class="expertise-header-box" style="text-align: center; margin-bottom: 60px;">
+        <h2 class="expertise-main-heading">ORGANIZATIONAL <span class="text-highlight">STRUCTURE</span></h2>
+        <div class="expertise-underline" style="margin: 20px auto;"></div>
+    </div>
+
+    <div class="org-chart">
+        <!-- Director -->
+        <div class="org-box director">DIRECTOR</div>
+        
+        <!-- Connector 1 -->
+        <div class="connector"></div>
+
+        <!-- Level 2 -->
+        <div class="org-row" style="display: flex; gap: 20px;">
+            <div class="org-box dept-head">PROJECT MANAGEMENT</div>
+            <div class="org-box dept-head">CONTRACT & COMMERCIAL</div>
+            <div class="org-box dept-head">ACCOUNT & FINANCE</div>
+        </div>
+
+        <!-- Connector 2 -->
+        <div class="connector"></div>
+
+        <!-- Level 3 -->
+        <div class="org-row" style="display: flex; gap: 40px;">
+            <div class="org-sub-team">
+                <div class="org-box sub-team-card">DESIGN TEAM</div>
+                <div class="org-box sub-team-card">MANAGER</div>
+                <div class="org-box sub-team-card">DRAFTER</div>
+            </div>
+            
+            <div class="org-sub-team">
+                <div class="org-box sub-team-card">TECHNICAL TEAM</div>
+                <div class="org-box sub-team-card">MANAGER</div>
+                <div class="org-box sub-team-card">ENGINEER</div>
+                
+                <!-- Connector 3 -->
+                <div class="connector" style="height: 15px;"></div>
+                
+                <div style="display: flex; gap: 5px;">
+                    <div class="org-box staff-card">SUPERVISOR</div>
+                    <div class="org-box staff-card">CHARGEMAN</div>
+                    <div class="org-box staff-card">TECHNICIAN</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio" style="padding: 100px 5%; text-align: center; background: #ffffff;">
+    <div class="expertise-header-box" style="text-align: center; margin-bottom: 40px;">
+        <h2 class="expertise-main-heading">PORTFOLIO & <span class="text-highlight">ACHIEVEMENT</span></h2>
+        <div class="expertise-underline" style="margin: 20px auto;"></div>
+    </div>
+    
+    <button onclick="togglePortfolio()" class="hss-btn btn-blue" style="cursor: pointer; padding: 12px 25px; border-radius: 5px; background: var(--cls-royal); color: white; border: none; font-weight: 600;">
+        View Past Projects List ↓
+    </button>
+
+    <div id="portfolio-table-wrapper" style="display: none; opacity: 0; transition: opacity 0.5s ease; margin-top: 30px;">
+        <div class="table-container" style="overflow-x: auto;">
+            <table class="hss-data-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="background-color: var(--cls-royal); color: white;">
+                        <th style="padding: 15px;">NO</th>
+                        <th style="padding: 15px;">PROJECT NAME</th>
+                        <th style="padding: 15px;">YEAR / TARGET</th>
+                        <th style="padding: 15px;">CONTRACT VALUE</th>
+                        <th style="padding: 15px;">SCOPE OF WORK</th>
+                        <th style="padding: 15px;">CLIENT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- PAST PROJECTS -->
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">1</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Projek Mass Rapid Transit Laluan 2: SSP Package ADD01 - Workshop Construction</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">March 2023</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 1,577,590.50</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, Lighting, ACMV, Plumbing</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">MMC Gamuda, MRT Corp, RD Resources</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">2</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Proposed Development of Business Aviation 1 (BA-1) at Sultan Abdul Aziz Shah Airport</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">April 2024</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 3,931,208.80</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, ICT, CCTV, Smart Parking, ACMV, Airfield Lighting</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Malaysia Airport Sdn Bhd, RD Resources</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">3</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Cadangan Membina Pusat Penyelenggaraan/Baik Pulih Kapal Terbang (Hangar)</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">June 2024</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 1,464,830.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Underground Electrical Works, HDD Works</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Execujet MRO Services Malaysia Sdn Bhd</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">4</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Cadangan Tambahan Dan Pindaan Ke Atas Kedai Pejabat 4 Tingkat, Melawati</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">February 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 1,053,900.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, ACMV, ICT System</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Akal Digital Sdn Bhd</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">5</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Construction work for Five Petrol Station at NTI Songsang</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">December 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 24,570.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical Work, Compound Lighting, ACMV</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Songsang Petroleum Enterprise Sdn Bhd</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">6</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Construction work for BHP Petrol Station at Silbin, Ipoh Perak</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">August 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 18,150.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical Work, Compound Lighting, ACMV</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Bousted Petroleum Marketing Sdn Bhd</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">7</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Cadangan Membina 3 1/2 Tingkat Pejabat Teknikal Dan Stor, Johor</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">September 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 5,230,110.30</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, Lighting, ICT, CCTV, ACMV, Plumbing, Rain Water, Automation</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">TNB, RD Resources Sdn Bhd</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">8</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Meroboh dan mendirikan masjid al-ehsan, Pulau Pinang</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">September 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 420,000.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical Work, Compound Lighting, Underground Works</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Majlis Agama Islam Negeri Pulau Pinang</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">9</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Cadangan Meroboh dan Membina Semula Rumah Teres 2 Tingkat, Sri Petaling</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">October 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 46,160.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical Work</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Sejambak Bunga Properties Sdn Bhd, TJAY Resources</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">10</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Cadangan Membina Bangunan Sementara Restoran 2 Tingkat, Kuala Lumpur</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">December 2025</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 200,000.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical Work, ACMV, ICT System</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Restoran Rembayung Sdn Bhd</td></tr>
+                    <!-- ON-GOING PROJECTS -->
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">11</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Menaiktaraf Dan Membaik Pulih Institut Diplomasi Hubungan Luar Negeri (Idfr), Kuala Lumpur</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">2028 (Target)</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 18,000,000.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, Lighting, ICT, CCTV, ACMV, Plumbing, Rain Water, Automation</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Kementerian Luar Negeri Malaysia, RD Resources</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">12</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Hulu Langat Resort Project</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">2027 (Target)</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 800,000.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, Lighting, ACMV, ICT System, Plumbing</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Akal Digital Sdn Bhd</td></tr>
+                    <tr><td style="padding: 15px; border-bottom: 1px solid #ddd;">13</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Cadangan Pengubahsuaian Dalaman, Bangunan Permata Sapura, Kuala Lumpur</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">2026 (Target)</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">RM 200,000.00</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Electrical, Underground Works, CCTV, ACMV, Plumbing, Automation</td><td style="padding: 15px; border-bottom: 1px solid #ddd;">Myphysio Sdn Bhd</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+function togglePortfolio() {
+    const wrapper = document.getElementById('portfolio-table-wrapper');
+    if (wrapper.style.display === 'none') {
+        wrapper.style.display = 'block';
+        setTimeout(() => { wrapper.style.opacity = '1'; }, 10);
+    } else {
+        wrapper.style.opacity = '0';
+        setTimeout(() => { wrapper.style.display = 'none'; }, 500);
+    }
+}
+</script>
+
+
+<section id="gallery" class="hss-gallery-section">
+    <div class="expertise-header-box">
+        <h2 class="expertise-main-heading">PHOTO <span class="text-highlight">GALLERY</span></h2>
+        <div class="expertise-underline"></div>
+    </div>
+
+    <div class="gallery-grid">
+        <!-- Item 1: Page 13 -->
+        <div class="gallery-item">
+            <div class="image-wrapper">
+                <img src="page_13.jpg" alt="Projek Serendah & Subang Airport">
+            </div>
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h4>Pusat Perkembangan Kemahiran Serendah</h4>
+                    <div class="premium-separator"><span>&</span></div>
+                    <h4>Infrastructure Package - Subang Airport</h4>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Item 2: Page 14 -->
+        <div class="gallery-item">
+            <div class="image-wrapper">
+                <img src="page_14.jpg" alt="Projek Execujet MRO & Thinking Space">
+            </div>
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h4>Electrical Infrastructure Execujet MRO</h4>
+                    <div class="premium-separator"><span>&</span></div>
+                    <h4>The Thinking Space - Taman Melawati</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 3: Page 15 -->
+        <div class="gallery-item">
+            <div class="image-wrapper">
+                <img src="page_15.jpg" alt="Projek BHP Silibin & Five Temerloh">
+            </div>
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h4>BHP Petrol Station - Silibin, Perak</h4>
+                    <div class="premium-separator"><span>&</span></div>
+                    <h4>Five Petrol Station - Temerloh, Pahang</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 4: Page 16 -->
+        <div class="gallery-item">
+            <div class="image-wrapper">
+                <img src="page_16.jpg" alt="Projek TNB Kempas & Masjid Al-Ehsan">
+            </div>
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h4>Office Building & Gangstore TNB Kempas</h4>
+                    <div class="premium-separator"><span>&</span></div>
+                    <h4>Masjid Al-Ehsan - Sg. Pinang</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 5: Page 17 -->
+        <div class="gallery-item">
+            <div class="image-wrapper">
+                <img src="page_17.jpg" alt="Restaurant Rembayung">
+            </div>
+            <div class="overlay">
+                <div class="overlay-content">
+                    <h4>Restaurant Rembayung - KL</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="current-projects" class="cp-premium-showcase-section">
+    <!-- Header Seksyen -->
+    <div class="cp-header-box">
+        <h2 class="cp-main-heading">CURRENT <span class="cp-text-highlight">PROJECTS</span></h2>
+        <div class="cp-underline"></div>
+    </div>
+
+    <!-- Grid Layout Gambar Penuh -->
+    <div class="cp-full-grid">
+        
+        <!-- Kad Gambar 1 (Page 18) -->
+        <div class="cp-full-card">
+            <div class="cp-image-wrapper">
+                <img src="page_18.jpg" alt="RD Technik Current Project - Page 18">
+            </div>
+            <!-- Lapisan bayang premium di bawah sahaja tanpa teks -->
+            <div class="cp-light-overlay"></div>
+        </div>
+        
+        <!-- Kad Gambar 2 (Page 19) -->
+        <div class="cp-full-card">
+            <div class="cp-image-wrapper">
+                <img src="page_19.jpg" alt="RD Technik Current Project - Page 19">
+            </div>
+            <div class="cp-light-overlay"></div>
+        </div>
+
+    </div>
+</section>
+
+
+<section id="company-certificates" class="cert-premium-section">
+    <!-- Header Seksyen -->
+    <div class="cert-header-box">
+        <h2 class="cert-main-heading">REGISTRATION & <span class="cert-text-highlight">CERTIFICATES</span></h2>
+        <div class="cert-underline"></div>
+        <p class="cert-sub-lead">Official Government Bodies Credentials & Compliances</p>
+    </div>
+
+    <div class="cert-container">
+        <!-- GRID UTAMA SIJIL -->
+        <div class="cert-grid">
+            
+            <!-- Kad 1: Intro/Overview (Page 20) -->
+            <div class="cert-card cert-featured">
+                <div class="cert-img-wrapper">
+                    <img src="page_20.jpg" alt="Government Bodies Registration Certificates">
+                </div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+            <!-- Kad 2: SSM (Page 21) -->
+            <div class="cert-card">
+                <div class="cert-img-wrapper">
+                    <img src="page_21.jpg" alt="Suruhanjaya Syarikat Malaysia - SSM">
+                </div>
+                <div class="cert-badge">SSM</div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+            <!-- Kad 3: CIDB Perakuan Pendaftaran (Page 22) -->
+            <div class="cert-card">
+                <div class="cert-img-wrapper">
+                    <img src="page_22.jpg" alt="Lembaga Pembangunan Industri Pembinaan Malaysia - CIDB G4">
+                </div>
+                <div class="cert-badge">CIDB G4</div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+            <!-- Kad 4: SCORE CIDB (Page 23) -->
+            <div class="cert-card">
+                <div class="cert-img-wrapper">
+                    <img src="page_23.jpg" alt="SCORE CIDB 2 Star Achievement">
+                </div>
+                <div class="cert-badge">SCORE CIDB</div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+            <!-- Kad 5: SPKK CIDB (Page 24) -->
+            <div class="cert-card">
+                <div class="cert-img-wrapper">
+                    <img src="page_24.jpg" alt="Sijil Perolehan Kerja Kerajaan - SPKK CIDB">
+                </div>
+                <div class="cert-badge">SPKK</div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+            <!-- Kad 6: Suruhanjaya Tenaga (Page 25) -->
+            <div class="cert-card">
+                <div class="cert-img-wrapper">
+                    <img src="page_25.jpg" alt="Suruhanjaya Tenaga - ST">
+                </div>
+                <div class="cert-badge">ST (BORANG Q)</div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+            <!-- Kad 7: LHDN TCC (Page 26) -->
+            <div class="cert-card">
+                <div class="cert-img-wrapper">
+                    <img src="page_26.jpg" alt="Sijil Pematuhan Cukai - LHDN TCC">
+                </div>
+                <div class="cert-badge">LHDN TCC</div>
+                <div class="cert-scan-line"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div> <!-- Penutup cert-grid (Dikekalkan) -->
+    </div> <!-- Penutup cert-container (Dikekalkan) -->
+
+<!-- FLOATING WHATSAPP BUTTON (Hanya Logo Bulat - Ikut Scroll) -->
+<a href="https://wa.me/601341443676" target="_blank" class="wa-floating-sticky-btn" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="wa-sticky-svg">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
+
+
+
+    <!-- PREMIUM FOOTER GILA-GILA (Tahun 2026 Copyright) -->
+    <div class="cert-footer-copyright">
+        <div class="footer-divider"></div>
+        <p>&copy; 2026 <span class="footer-brand">RD TECHNIK SDN. BHD.</span> All Rights Reserved.</p>
+    </div>
+</section>
