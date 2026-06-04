@@ -1,0 +1,12 @@
+<script>
+function togglePortfolio() {
+    const wrapper = document.getElementById('portfolio-table-wrapper');
+    if (wrapper.style.display === "none") {
+        wrapper.style.display = "block";
+        setTimeout(() => { wrapper.style.opacity = "1"; }, 10);
+    } else {
+        wrapper.style.opacity = "0";
+        setTimeout(() => { wrapper.style.display = "none"; }, 500);
+    }
+}
+</script>
