@@ -2598,3 +2598,11 @@ body {
     display: none !important;
   }
 }
+
+
+/* 1. Paksa sorok bahagian yang terkeluar */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+}
+
