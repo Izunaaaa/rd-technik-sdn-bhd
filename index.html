@@ -123,23 +123,20 @@
         </div>
     </header>
 
-<!-- LAYER 2: PREMIUM BLUR NAVIGATION (With Live Track Interactivity) -->
 <nav class="hss-navbar" id="dynamic-navbar">
-    <div class="hss-nav-container">
-        <div class="hss-nav-links-wrapper">
-            <a href="#home" class="hss-nav-link active">Home</a>
-            <a href="#about" class="hss-nav-link">About Us</a>
-            <a href="#vision-mission" class="hss-nav-link">Vision & Mission</a>
-            <a href="#profile" class="hss-nav-link">Our Profile</a>
-            <a href="#company-certificates" class="hss-nav-link">Certificates</a> <!-- Tambah link ke seksi sijil -->
-            <a href="#services" class="hss-nav-link">Our Services</a>
-            <a href="#gallery" class="hss-nav-link">Our Works</a>
-            <a href="#profile" class="hss-nav-link">Contact</a> <!-- Dah dihalakan terus ke ID #profile -->
-        </div>
-        <div class="hss-nav-cta">
-            <a href="https://wa.me/601341443676" class="hss-nav-fast-btn">Get In Touch</a> <!-- Dah dihalakan terus ke ID #profile -->
-        </div>
+  <div class="hss-nav-container">
+    
+    <button class="hss-menu-toggle" id="menu-btn">&#9776;</button>
+
+    <div class="hss-nav-links-wrapper" id="nav-menu">
+      <a href="#home" class="hss-nav-link active">Home</a>
+      <a href="#about" class="hss-nav-link">About Us</a>
+      <a href="#vision-mission" class="hss-nav-link">Vision & Mission</a>
+      <a href="#profile" class="hss-nav-link">Our Profile</a>
+      <a href="#company-certificates" class="hss-nav-link">Certificates</a>
     </div>
+
+  </div>
 </nav>
 
     <!-- LAYER 3: CINEMATIC HERO PANORAMA (Gunakan file gambar pilihan anda di 'src') -->
@@ -932,3 +929,24 @@ function togglePortfolio() {
         <p>&copy; 2026 <span class="footer-brand">RD TECHNIK SDN. BHD.</span> All Rights Reserved.</p>
     </div>
 </section>
+
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuBtn.addEventListener('click', () => {
+      // Bila klik, dia akan on/off class 'active' dekat menu
+      navMenu.classList.toggle('active');
+    });
+
+    // Otomatik tutup menu balik bila kita klik mana-mana link (Home, About, dll)
+    const navLinksMenu = document.querySelectorAll('.hss-nav-link');
+    navLinksMenu.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -2518,3 +2518,83 @@ body {
 }
 
 
+/* --- INI UNTUK SUSUNAN NAVBAR PADA MOBILE --- */
+@media screen and (max-width: 768px) {
+
+  /* 1. PAKSA NAVBAR JADI SATU BARIS (LOGO KIRI, HAMBURGER KANAN) */
+  .hss-navbar {
+    display: flex !important;
+    flex-direction: row !important;      /* Paksa satu baris horizontal */
+    justify-content: space-between !important; /* Logo paling kiri, hamburger paling kanan */
+    align-items: center !important;     /* Center secara menegak (vertical) */
+    padding: 10px 20px !important;      /* Jarak tepi kiri kanan dalam navbar */
+    position: relative !important;
+    background: #0f172a !important;     /* Warna latar navbar (tukar ikut kesesuaian) */
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. LOGO KAU (Pastikan gambar/logo tak terlalu besar sampai makan ruang) */
+  /* Tukar .hss-logo-container ni ikut class logo/branding kau yang sebenar */
+  .hss-navbar .logo, 
+  .hss-navbar img {
+    max-height: 40px !important;        /* Kawal tinggi logo kat phone supaya navbar tak gemuk */
+    width: auto !important;
+  }
+
+  /* 3. BUTANG HAMBURGER (DUDUK MANIS KAT KANAN SEJAJAR LOGO) */
+  .hss-menu-toggle {
+    display: block !important;
+    background: none !important;
+    border: none !important;
+    color: #ffffff !important;          /* Warna putih biar nampak jelas */
+    font-size: 28px !important;
+    cursor: pointer !important;
+    padding: 0 !important;              /* Buang padding asal supaya center betul */
+    
+    /* Guna static/relative sebab flex space-between dah tolak dia ke kanan */
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: 9999 !important;
+  }
+
+  /* 4. DROPDOWN MENU BILA KLIK (DIA AKAN JATUH BAWAH NAVBAR) */
+  .hss-nav-links-wrapper {
+    display: none !important;           /* Sorok asal */
+    flex-direction: column !important;
+    width: 100% !important;
+    background: rgba(15, 23, 42, 0.98) !important;
+    
+    /* Kedudukan drop down */
+    position: absolute !important;
+    top: 100% !important;               /* Ngam-ngam bawah navbar */
+    left: 0 !important;
+    padding: 15px 0 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    border-bottom: 3px solid #3b82f6;
+    z-index: 998 !important;
+  }
+
+  /* MENU MUNCUL BILA ACTIVE */
+  .hss-nav-links-wrapper.active {
+    display: flex !important;
+  }
+
+  .hss-nav-link {
+    padding: 12px 0 !important;
+    width: 100% !important;
+    display: block !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+  }
+}
+
+/* Sorok hamburger dekat PC */
+@media screen and (min-width: 769px) {
+  .hss-menu-toggle {
+    display: none !important;
+  }
+}
