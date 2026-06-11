@@ -2606,3 +2606,50 @@ html, body {
     width: 100% !important;
 }
 
+
+.container, .hero-banner, .section-utama {
+    width: 100%;       /* Ikut saiz skrin apa-apa fon pun */
+    max-width: 1200px; /* Tapi jangan bagi dia meluas lebih dari 1200px kalau kat PC */
+    padding: 0 20px;   /* Bagi gap kiri kanan sikit dekat fon supaya tak rapat dinding */
+    box-sizing: border-box;
+}
+
+
+.banner-content {
+    display: flex;
+    flex-direction: column; /* Kat fon, paksa semua text & gambar susun ke bawah */
+    align-items: center;    /* Bagi semua text duduk tengah */
+    text-align: center;
+}
+
+/* Bila skrin besar (PC) baru kita bagi dia melintang balik */
+@media screen and (min-width: 768px) {
+    .banner-content {
+        flex-direction: row; /* Kat PC/Laptop, dia akan automatik jadi kiri-kanan balik */
+        text-align: left;
+    }
+}
+
+
+/* Saiz default untuk fon (Skrin Kecil) */
+.tajuk-besar {
+    font-size: 24px; /* Kat fon kita bagi kecik dulu */
+    line-height: 1.3;
+}
+
+/* Bila skrin besar (PC), baru besarkan tulisan */
+@media screen and (min-width: 992px) {
+    .tajuk-besar {
+        font-size: 48px; /* Kat PC dia automatik jadi besar balik */
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    /* Reset semua position yang kacau layout kat fon */
+    .hero-banner, .hero-text, .profile-title {
+        position: static !important; /* Buang absolute */
+        height: auto !important;     /* Biar dia panjang ke bawah ikut kesesuaian text */
+        margin: 10px 0 !important;
+    }
+}
