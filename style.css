@@ -2653,3 +2653,75 @@ html, body {
         margin: 10px 0 !important;
     }
 }
+
+
+/* ==========================================================================
+   CODE UNTUK KEMASKAN MOBILE VIEW (FON & TABLET)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. KECILKAN HEADER & TAGLINE ATAS */
+    /* Ganti .header-container / .logo-area dengan class header abang */
+    .logo-area h2, .header h2 {
+        font-size: 14px !important; /* Kecilkan nama speciaist tu */
+        letter-spacing: 1px !important;
+        margin-top: 5px !important;
+    }
+    
+    .logo-area p, .header p {
+        font-size: 11px !important; /* Tagline bawah logo */
+    }
+
+    /* 2. SETELKAN BANNER TENGAH YANG BERSEPAH */
+    /* Ganti .hero-section dengan class container banner abang */
+    .hero-section, .banner-container {
+        padding: 40px 15px !important; /* Beri ruang atas bawah, rapatkan kiri kanan */
+        height: auto !important; /* Biar banner panjang ikut teks, tak adalah teks terkeluar */
+        min-height: 450px !important; 
+    }
+
+    /* 3. KECILKAN FONT JADI NGAM-NGAM SKRIN FON */
+    /* Tulisan kuning "WELCOME TO..." */
+    .sub-welcome, .welcome-text {
+        font-size: 12px !important; 
+        margin-bottom: 8px !important;
+        display: block !important;
+    }
+
+    /* Tulisan besar "RD TECHNIK SDN BHD" yang bapak besar tadi */
+    .main-title, .hero-content h1 {
+        font-size: 26px !important; /* Drop terus dari saiz PC ke 26px supaya tak bersepah */
+        line-height: 1.2 !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Tulisan "Precision. Innovation..." */
+    .hero-desc, .hero-content p {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 25px !important;
+    }
+
+    /* 4. SUSUN BUTANG KEMAS-KEMAS */
+    /* Ganti dengan class container butang abang */
+    .hero-buttons {
+        display: flex !important;
+        flex-direction: column !important; /* Paksa butang susun ke bawah, bukan melintang */
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .hero-buttons a, .btn {
+        width: 100% !important; /* Butang jadi lebar penuh, senang jari nak tekan */
+        padding: 12px !important;
+        font-size: 13px !important;
+        text-align: center !important;
+    }
+}
+
+/* ---> UNTUK FON SKRIN LAGI KECIL (Bawah 400px) <--- */
+@media screen and (max-width: 400px) {
+    .main-title, .hero-content h1 {
+        font-size: 22px !important; /* Kalau fon kecik lagi, kita ufuk lagi tulisan tu */
+    }
+}
