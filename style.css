@@ -3677,19 +3677,15 @@ h2.hss-project-title,
     display: block !important;
 }
 
-/* 3. Untuk skrin Desktop (Lebih 768px), PAKSA sembunyi terus supaya tak bocor */
-@media (min-width: 769px) {
-    .hss-mobile-dropdown,
-    #mobileDropdown,
-    .hss-mobile-bar,
-    .hss-mobile-header {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        overflow: hidden !important;
-    }
+/* 3. PAKSA SEMBUNYI TERUS KAT MOBILE & DESKTOP (PADAMKAN BAR BAWAH) */
+.hss-mobile-bar,
+.hss-mobile-header {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
-
 
 /* ==========================================================================
    OPTIMIZATION FOR ARCHITECTURAL ABOUT SECTION (MOBILE VIEW)
