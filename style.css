@@ -76,7 +76,7 @@ body {
 }
 
 /* ==========================================================================
-   LAYER 2: FIXED BACKDROP-BLUR NAVBAR (GSAP CONNECTED)
+   LAYER 2: FIXED BACKDROP-BLUR NAVBAR (MAINTAIN BLUE ON SCROLL)
    ========================================================================== */
 .hss-navbar {
     background-color: rgba(12, 35, 64, 0.95);
@@ -91,14 +91,14 @@ body {
     transition: top 0.4s var(--premium-glow), background 0.4s var(--premium-glow), border 0.4s var(--premium-glow), box-shadow 0.4s var(--premium-glow);
 }
 
-/* State apabila user mula scroll website */
+/* State apabila user mula scroll website - KEKAL WARNA BIRU */
 .hss-navbar.scrolled {
     top: 0 !important;
-    background: rgba(255, 255, 255, 0.85) !important;
+    background: rgba(12, 35, 64, 0.98) !important; /* KEKAL BIRU GELAP BILA SCROLL */
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5); /* Shadow lebih gelap */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hss-nav-container {
@@ -115,7 +115,7 @@ body {
 }
 
 .hss-nav-link {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     padding: 20px 24px;
     font-size: 0.8rem;
@@ -126,9 +126,9 @@ body {
     transition: var(--transition-smooth);
 }
 
-/* Adaptive text color based on navbar transformation */
+/* Kekalkan warna teks terang/putih bila scroll */
 .hss-navbar.scrolled .hss-nav-link {
-    color: var(--cls-text-main);
+    color: #ffffff !important;
 }
 
 .hss-nav-link::after {
@@ -144,19 +144,19 @@ body {
 }
 
 .hss-navbar.scrolled .hss-nav-link::after {
-    background-color: var(--cls-royal);
+    background-color: var(--cls-gold) !important; /* Line hover kekal gold */
 }
 
 .hss-nav-link:hover, 
 .hss-nav-link.active {
     color: var(--cls-pure-white);
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 .hss-navbar.scrolled .hss-nav-link:hover, 
 .hss-navbar.scrolled .hss-nav-link.active {
-    color: var(--cls-royal);
-    background-color: rgba(0, 82, 204, 0.03);
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .hss-nav-link:hover::after,
@@ -164,10 +164,10 @@ body {
     width: 30px;
 }
 
-/* Premium Fast Action Call Button */
+/* Fast Action Call Button */
 .hss-nav-fast-btn {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     color: var(--cls-pure-white);
     padding: 10px 22px;
     font-size: 0.75rem;
@@ -180,8 +180,8 @@ body {
 }
 
 .hss-navbar.scrolled .hss-nav-fast-btn {
-    border-color: var(--cls-royal);
-    color: var(--cls-royal);
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    color: #ffffff !important;
 }
 
 .hss-nav-fast-btn:hover {
@@ -193,12 +193,11 @@ body {
 }
 
 .hss-navbar.scrolled .hss-nav-fast-btn:hover {
-    background-color: var(--cls-royal);
-    color: var(--cls-pure-white);
-    border-color: var(--cls-royal);
-    box-shadow: 0 10px 20px rgba(0, 82, 204, 0.15);
+    background-color: #ffffff !important;
+    color: #0c2340 !important; /* Teks butang tukar biru bila hover */
+    border-color: #ffffff !important;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2) !important;
 }
-
 /* ==========================================================================
    LAYER 3: CINEMATIC HERO PANORAMA
    ========================================================================== */
@@ -2723,5 +2722,970 @@ html, body {
 @media screen and (max-width: 400px) {
     .main-title, .hero-content h1 {
         font-size: 22px !important; /* Kalau fon kecik lagi, kita ufuk lagi tulisan tu */
+    }
+}
+
+
+/* Layout Alignment */
+.hss-navbar {
+  position: relative;
+  z-index: 999;
+}
+
+.hss-nav-links-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hss-nav-item {
+  position: relative;
+}
+
+.arrow-icon {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+/* Arrow Flip on Hover */
+.hss-has-mega:hover .arrow-icon {
+  transform: rotate(180deg);
+}
+
+/* MEGA DROPDOWN BOX STYLES */
+.hss-mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  width: 720px;
+  background: rgba(11, 15, 25, 0.96);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+}
+
+/* Show Menu on Hover */
+.hss-has-mega:hover .hss-mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Inner Grid */
+.hss-mega-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 20px;
+  text-align: left;
+}
+
+.col-title {
+  color: #00d2ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.mega-link {
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  display: block;
+  transition: background 0.2s ease;
+  margin-bottom: 4px;
+}
+
+.mega-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mega-link strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.88rem;
+}
+
+.mega-link p {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  margin: 2px 0 0 0;
+  line-height: 1.3;
+}
+
+/* Card Section inside Mega Menu */
+.mega-card {
+  background: linear-gradient(135deg, rgba(0, 210, 255, 0.12), rgba(15, 23, 42, 0.8));
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-badge {
+  background: #00d2ff;
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.mega-card h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 10px 0 6px 0;
+}
+
+.mega-card p {
+  color: #94a3b8;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.card-btn {
+  color: #00d2ff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card-btn:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+  .hss-mega-menu {
+    position: static;
+    transform: none !important;
+    width: 100%;
+    display: none;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+  }
+  
+  .hss-mega-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hss-has-mega:hover .hss-mega-menu {
+    display: block;
+  }
+}
+
+
+/* Posisi Relative Navbar */
+.hss-navbar {
+  position: relative;
+}
+
+.hss-nav-container {
+  position: relative;
+}
+
+.hss-nav-item {
+  position: static;
+}
+
+/* FULL-WIDTH MEGA DROPDOWN CONTAINER */
+.hss-full-mega-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #f8fafc;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease-in-out;
+  z-index: 9999;
+}
+
+/* Display On Hover */
+.hss-has-mega:hover .hss-full-mega-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Susunan Grid 2 Kolum */
+.mega-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px 20px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Gambar Kiri */
+.mega-img-col {
+  width: 100%;
+}
+
+.mega-preview-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Tajuk Seksyen Teks */
+.mega-header {
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 6px;
+}
+
+/* Senarai Link Teks */
+.mega-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mega-links-list li {
+  margin-bottom: 8px;
+}
+
+.mega-links-list li a {
+  color: #334155;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-block;
+  padding: 4px 0;
+}
+
+/* Hover Teks */
+.mega-links-list li a:hover {
+  color: #000000;
+  padding-left: 6px;
+  font-weight: 700;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991px) {
+  .mega-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .hss-full-mega-dropdown {
+    position: static;
+    display: none;
+  }
+
+  .hss-has-mega:hover .hss-full-mega-dropdown {
+    display: block;
+  }
+}
+
+
+/* CONTAINER SLIDER HERO */
+.hss-hero-container {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 500px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* OVERLAY TRANSPARENT SOFT DARK */
+.hss-hero-overlay-dark {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 2;
+}
+
+/* SLIDE ITEM */
+.hss-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+    z-index: 1;
+}
+
+.hss-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+}
+
+.hss-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform 7s ease-out;
+}
+
+.hss-slide.active .hss-hero-img {
+    transform: scale(1.08); /* Dynamic slow zoom */
+}
+
+/* CONTAINER TEKS (FORCE PAKSA POSISI KANAN SEKALI) */
+.hss-text-overlay {
+    position: absolute !important;
+    bottom: 80px !important;       /* Atas sikit dari butang Whatsapp/Taskbar */
+    right: 30px !important;        /* KUNCI TEPAT KAT KANAN SEKALI */
+    left: auto !important;         /* BUANG terus sebarang setting LEFT */
+    width: auto !important;
+    z-index: 10 !important;
+    pointer-events: none;
+    overflow: hidden !important;   /* Masking untuk efek slide */
+    text-align: right !important;  /* Teks melekat rapat ke tebing kanan */
+}
+
+/* ==========================================================================
+   EFEK REVEAL LORONG (MASKING TRACK EFFECT)
+   ========================================================================== */
+
+/* 1. LORONG / TRACK (Menyolok teks bila terkeluar dari kawasan ni) */
+.title-mask-track {
+    overflow: hidden !important; /* Kunci: Apa-apa kat luar lorong ni terus tak nampak */
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 5px 0; /* Space sikit untuk elak font terpotong */
+}
+
+/* 2. TEKS DI DALAM LORONG */
+.hss-project-title {
+    color: #ffffff;
+    font-family: 'Montserrat', 'Arial Black', sans-serif !important;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0 !important;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap !important;
+    display: block !important;
+    
+    /* Default: Sembunyi 100% di luar lorong (sebelah kanan) */
+    transform: translateX(105%);
+    will-change: transform;
+}
+
+/* 3. ANIMASI MASUK (Bila Slide Aktif - Teks meluncur keluar dari lorong) */
+.hss-slide.active .hss-project-title {
+    animation: trainRevealIn 1.1s cubic-bezier(0.77, 0, 0.175, 1) 0.3s forwards !important;
+}
+
+/* 4. ANIMASI KELUAR (Bila Slide Tukar - Teks masuk balik dalam lorong belah kiri) */
+.hss-slide.exit .hss-project-title {
+    animation: trainRevealOut 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards !important;
+}
+
+/* KEYFRAMES PERGERAKAN TEKS */
+
+/* Teks meluncur dari luar lorong (kanan) masuk penuh ke dalam lorong */
+@keyframes trainRevealIn {
+    0% {
+        transform: translateX(105%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+/* Teks meluncur terus keluar mengikut lorong ke belah kiri */
+@keyframes trainRevealOut {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-105%);
+    }
+}
+
+/* PAKSA TEKS IKUT TEPAT SEPERTI DALAM HTML (TAK KIRA CAPITAL / KECIK) */
+.hss-project-title,
+.hss-text-overlay .hss-project-title {
+    text-transform: none !important; /* Buang paksaan uppercase/capitalize */
+}
+/* KHAS UNTUK SLIDE 1 (HITAM) */
+.hss-project-title.text-black {
+    color: #000000 !important;
+}
+/* ==========================================================================
+   FIX MOBILE VIEW (NAVBAR DROPDOWN & HERO TEXT SLIDER)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* 1. CONTAINER TOP HEADER & NAVBAR */
+    .hss-top-header {
+        display: none; /* Sembunyikan topbar kecil kat mobile jika ada */
+    }
+
+    .hss-navbar {
+        top: 0 !important; /* Paksa navbar duduk di paling atas skrin mobile */
+        padding: 10px 0;
+    }
+
+    .hss-nav-container {
+        padding: 0 20px !important;
+        position: relative;
+    }
+
+    /* 2. MENU LINKS WRAPPER (MENJADI FULLSCREEN DROPDOWN MENU) */
+    .hss-nav-links-wrapper {
+        position: fixed !important;
+        top: 60px; /* Di bawah navbar */
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 60px);
+        background-color: #0c2340 !important; /* Blue background pekat */
+        flex-direction: column !important; /* Susun link ke bawah */
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 40px;
+        gap: 15px;
+        
+        /* Default sembunyikan menu */
+        display: none !important; 
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 998;
+    }
+
+    /* BILA BUTTON HAMBURGER KLIK (.active) */
+    .hss-nav-links-wrapper.active {
+        display: flex !important;
+        opacity: 1;
+    }
+
+    /* LINK DALAM MOBILE MENU */
+    .hss-nav-link {
+        padding: 12px 20px !important;
+        font-size: 1.1rem !important; /* Saiz font selesa untuk jari tekan */
+        color: #ffffff !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hss-nav-link::after {
+        display: none; /* Buang garisan hover bawah yang tak sesuai di mobile */
+    }
+
+    /* 3. FIX HERO TEXT SLIDER (ELAK BERTINDIH & TERKELUAR SKRIN) */
+    .hss-hero-container {
+        height: 70vh !important; /* Turunkan tinggi hero kat phone */
+        min-height: 400px !important;
+    }
+
+    .hss-text-overlay {
+        bottom: 40px !important; /* Jarak selamat dari butang Whatsapp */
+        right: 15px !important;
+        left: 15px !important; /* Biar span dari kiri ke kanan */
+        width: auto !important;
+        text-align: right !important;
+        padding: 0 !important;
+    }
+
+    .hss-project-title {
+        font-size: 1.3rem !important; /* Kecilkan font supaya muat 1-2 baris sahaja */
+        line-height: 1.3 !important;
+        white-space: normal !important; /* BENARKAN TEKS 'WRAP' TURUN BARIS */
+        word-break: break-word;
+        max-width: 100% !important;
+    }
+
+    /* FAST ACTION BUTTON DALAM MENU */
+    .hss-nav-fast-btn {
+        margin-top: 20px;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+
+/* ==========================================================================
+   FIX EXACT MOBILE MENU (MATCH HSS REFERENCE SITE)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* 1. CONTAINER NAVBAR KESELURUHAN */
+    .hss-navbar {
+        position: relative !important;
+        top: 0 !important;
+        background-color: #0c2340 !important; /* Tapak bar biru */
+        padding: 0 !important;
+        height: auto !important;
+    }
+
+    /* 2. BAR ATAS (DUDUKKAN HAMBURGER/PANGKAH DI KANAN SEKALIKAN) */
+    .hss-nav-container {
+        display: flex !important;
+        justify-content: flex-end !important; /* Paksa button ke kanan */
+        align-items: center !important;
+        padding: 10px 20px !important;
+        min-height: 50px !important;
+        width: 100% !important;
+        position: relative !important;
+    }
+
+    /* BUTTON HAMBURGER / PANGKAH */
+    .hss-menu-toggle {
+        display: block !important;
+        margin-left: auto !important; /* Tolak ke kanan sekali */
+        margin-right: 0 !important;
+        font-size: 24px !important;
+        color: #ffffff !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+
+    /* 3. DROPDOWN MENU (BACKGROUND BUKAN FULLSCREEN! SETINGGI CONTENT JAH) */
+    .hss-nav-links-wrapper {
+        display: none !important; /* Sembunyi bila tak aktif */
+        position: absolute !important; /* Duduk betul-betul bawah bar */
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important; /* BUKAN 100vh! Bagi gambar bawah nampak */
+        background-color: #0c2340 !important; /* Biru pekat */
+        flex-direction: column !important;
+        align-items: flex-start !important; /* Align teks ke KIRI, bukan tengah */
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important;
+        z-index: 9999 !important;
+    }
+
+    /* BILA BUTTON ☰ DITEKAN (.active) */
+    .hss-nav-links-wrapper.active {
+        display: flex !important;
+    }
+
+    /* 4. LINK MENU (TEKS RATA KIRI, FONT SEDERHANA, GARISAN NIPIS) */
+    .hss-nav-link {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 14px 20px !important; /* Padding selesa */
+        font-size: 0.9rem !important; /* Kecilkan font supaya tak 'gajah' */
+        font-weight: 600 !important;
+        color: #ffffff !important;
+        text-align: left !important; /* Rata Kiri */
+        text-transform: none !important; /* Elak semua uppercase melampau */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; /* Garisan nipis */
+        background: transparent !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .hss-nav-link:hover,
+    .hss-nav-link.active {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: #ffffff !important;
+    }
+
+    .hss-nav-link::after {
+        display: none !important; /* Buang garisan bawah desktop */
+    }
+
+    /* BUTANG FAST ACTION JIKA ADA */
+    .hss-nav-fast-btn {
+        margin: 15px 20px !important;
+        width: calc(100% - 40px) !important;
+        text-align: center !important;
+    }
+}
+
+
+/* Paksa apa-apa tajuk bertanda .text-black jadi hitam */
+.hss-project-title.text-black {
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+
+
+/* ==========================================================================
+   STYLE FONT MAJU EXPRESSWAY UNTUK SEMUA SLIDE (SLIDE 1, 2, 3 & SETERUSNYA)
+   ========================================================================== */
+
+.hss-project-title,
+.hss-text-overlay .hss-project-title {
+    /* Jenis Font Tebal ala Maju Expressway */
+    font-family: 'Montserrat', 'Arial Black', sans-serif !important;
+    font-weight: 900 !important; /* Heavy / Extra Bold */
+    text-transform: uppercase !important; /* Kekalkan ALL CAPS atau tukar ke capitalize */
+    letter-spacing: -1px !important; /* Rapatkan sikit huruf */
+    line-height: 1.1 !important;
+    
+    /* DEFAULT COLOR UNTUK SLIDE 2, 3 & SLIDE BARU */
+    color: #ffffff !important; 
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important; /* Shadow halus supaya teks putih jelas */
+}
+
+/* KHAS UNTUK SLIDE 1 SAHAJA (BERCLASS .text-black) */
+.hss-project-title.text-black {
+    color: #000000 !important; /* Warna Hitam */
+    text-shadow: none !important; /* Buang shadow */
+}
+
+/* RESPONSIF UNTUK MOBILE */
+@media (max-width: 768px) {
+    .hss-project-title,
+    .hss-text-overlay .hss-project-title {
+        font-size: 2.2rem !important; /* Saiz font tebal & padat di mobile */
+        text-align: right !important; /* Ikut kedudukan overlay di kanan */
+    }
+}
+
+
+/* ==========================================================================
+   MOBILE HEADER 2-LAYER (EXACT HSS STYLE)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* 1. SECTION LOGO (PUTIH) */
+    .rd-header-top {
+        background-color: #ffffff !important;
+        padding: 12px 20px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important; /* Logo di sebelah kiri */
+        border-bottom: 1px solid #f0f0f0;
+        width: 100% !important;
+    }
+
+    .rd-logo-img {
+        height: 45px !important; /* Adjust saiz logo */
+        width: auto !important;
+        display: block !important;
+    }
+
+    /* 2. BAR BIRU */
+    .rd-navbar-bar {
+        background-color: #0c2340 !important; /* Warna biru tema kau */
+        position: relative !important;
+        width: 100% !important;
+        z-index: 99999 !important;
+    }
+
+    .rd-bar-container {
+        display: flex !important;
+        justify-content: flex-end !important; /* Paksa butang ☰ ke KANAN */
+        align-items: center !important;
+        padding: 8px 20px !important;
+        min-height: 44px !important;
+    }
+
+    /* Butang ☰ / ✕ */
+    .rd-menu-toggle {
+        background: transparent !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-size: 26px !important;
+        cursor: pointer !important;
+        line-height: 1 !important;
+    }
+
+    .rd-menu-toggle .icon-close {
+        display: none;
+    }
+
+    /* State bila menu aktif */
+    .rd-navbar-bar.active .icon-hamburger {
+        display: none;
+    }
+    .rd-navbar-bar.active .icon-close {
+        display: block;
+    }
+
+    /* 3. DROPDOWN MENU BAWAH BAR BIRU */
+    .rd-mobile-dropdown {
+        display: none !important; /* Default sembunyi */
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100% !important;
+        background-color: #0c2340 !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3) !important;
+    }
+
+    .rd-navbar-bar.active .rd-mobile-dropdown {
+        display: block !important;
+    }
+
+    /* Link Menu */
+    .rd-nav-link {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 14px 20px !important;
+        color: #ffffff !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        text-align: left !important;
+    }
+}
+
+
+/* ==========================================================================
+   FIX EXACT HSS 2-LAYER MOBILE HEADER (PUTIH ATAS, BIRU BAWAH)
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    /* --- LAYER 1: CORPORATE TOP BAR (BACKGROUND PUTIH) --- */
+    header.hss-top-header {
+        background-color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 10px 15px !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .hss-logo-box .hss-logo {
+        height: 40px !important; /* Adjust saiz logo */
+        width: auto !important;
+        display: block !important;
+    }
+
+    .hss-slogan-box {
+        text-align: right !important;
+    }
+
+    .hss-slogan-text {
+        color: #333333 !important;
+        font-size: 0.7rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+    }
+
+    .hss-slogan-text .sub-slogan {
+        display: block !important;
+        color: #666666 !important;
+        font-size: 0.6rem !important;
+        font-weight: 400 !important;
+    }
+
+    /* --- LAYER 2: NAVIGATION BAR (BAR BIRU) --- */
+    nav#dynamic-navbar,
+    .hss-navbar {
+        background-color: #0c2340 !important; /* Warna biru tema kau */
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        z-index: 99999 !important;
+    }
+
+    .hss-nav-container {
+        display: flex !important;
+        justify-content: flex-end !important; /* Paksa butang ☰ ke KANAN SEKALI */
+        align-items: center !important;
+        padding: 8px 15px !important;
+        min-height: 44px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* BUTANG HAMBURGER / PANGKAH */
+    .hss-menu-toggle {
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-size: 24px !important;
+        cursor: pointer !important;
+        margin-left: auto !important;
+        padding: 0 !important;
+    }
+
+    /* --- DROPDOWN MENU CONTAINER (BAWAH BAR BIRU) --- */
+    .hss-nav-links-wrapper {
+        display: none !important; /* Sembunyi secara default */
+        position: absolute !important;
+        top: 100% !important; /* Melekat bawah bar biru */
+        left: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        background-color: #0c2340 !important; /* Biru pekat */
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+    }
+
+    /* BILA BUTTON ☰ DITEKAN (.active) */
+    .hss-nav-links-wrapper.active {
+        display: flex !important;
+    }
+
+    /* LINK-LINK MENU */
+    .hss-nav-link {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+        font-weight: 600 !important;
+        color: #ffffff !important;
+        text-align: left !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+}
+
+
+/* ==========================================================================
+   STYLE FONT CLEAN & FLAT (MACAM MILAU DAM)
+   ========================================================================== */
+
+/* 1. LORONG MASKING (KEKALKAN ANIMASI REVEAL) */
+.title-mask-track {
+    overflow: hidden !important;
+    display: inline-block !important;
+    vertical-align: bottom !important;
+    padding: 5px 0 !important;
+}
+
+/* 2. STYLE TEKS ASAS (CLEAN, FLAT, NO SHADOW/GRADIENT) */
+.hss-project-title,
+h2.hss-project-title,
+.hss-text-overlay .hss-project-title {
+    font-family: 'Montserrat', 'Arial', sans-serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 800 !important; /* Bold tapi tak melampau tebal */
+    letter-spacing: -0.5px !important;
+    margin: 0 !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    display: block !important;
+    
+    /* BUANG SEBARANG SHADOW / BACKGROUND / GRADIENT */
+    text-shadow: none !important;
+    background: none !important;
+    
+    /* IKUT TEPAT HURUF DALAM HTML */
+    text-transform: none !important; 
+
+    /* WARNA DEFAULT UNTUK SLIDE 2, 3 DAN SETERUSNYA (PUTIH RATA) */
+    color: #ffffff !important;
+
+    /* Pergerakan animasi */
+    transform: translateX(105%);
+    will-change: transform;
+}
+
+/* 3. KHAS UNTUK SLIDE 1 SAHAJA (HITAM RATA) */
+.hss-project-title.text-black,
+.hss-slide:first-child .hss-project-title {
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+
+/* 4. ANIMASI MASUK & KELUAR LORONG */
+.hss-slide.active .hss-project-title {
+    animation: trainRevealIn 2.5s cubic-bezier(0.77, 0, 0.175, 1) 0.3s forwards !important;
+}
+
+.hss-slide.exit .hss-project-title {
+    animation: trainRevealOut 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards !important;
+}
+
+@keyframes trainRevealIn {
+    0% { transform: translateX(105%); }
+    100% { transform: translateX(0%); }
+}
+
+@keyframes trainRevealOut {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-105%); }
+}
+
+
+/* ==========================================================================
+   PAKSA GAMBAR LOGO SLIDER KELUAR WARNA ASAL (BUANG EFEK HITAM/FILTER)
+   ========================================================================== */
+
+/* 1. Reset filter pada bekas logo dan gambar */
+.hss-logo-slider-premium .gov-logo-box,
+.hss-logo-slider-premium .slider-img,
+.gov-logo-box img.slider-img {
+    filter: none !important;            /* Buang sebarang filter hitam/kelabu */
+    -webkit-filter: none !important;
+    opacity: 1 !important;              /* Pastikan tak pudar */
+    mix-blend-mode: normal !important;  /* Buang mode blend kalau ada */
+}
+
+/* 2. Kalau ada efek hover tukar warna sebelum ni, matikan */
+.hss-logo-slider-premium .gov-logo-box:hover .slider-img {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* 3. Pastikan latar belakang petak logo bersih (Putih/Transparent) */
+.gov-logo-box {
+    background-color: #ffffff !important; /* Atau 'transparent' ikut selera kau */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 8px; /* Kemaskan bucu kotak logo */
+    padding: 10px;
+}
+
+
+/* ==========================================================================
+   PAKSA SEMBUNYI MOBILE MENU BIASA DARI KELUAR KAT BAWAH PAGE
+   ========================================================================== */
+
+/* 1. Sembunyikan mobile dropdown secara default */
+.hss-mobile-dropdown,
+#mobileDropdown {
+    display: none !important;
+}
+
+/* 2. Hanya paparkan bila ada class active (bila butang ☰ ditekan) */
+.hss-mobile-dropdown.active,
+#mobileDropdown.active {
+    display: block !important;
+}
+
+/* 3. Untuk skrin Desktop (Lebih 768px), PAKSA sembunyi terus supaya tak bocor */
+@media (min-width: 769px) {
+    .hss-mobile-dropdown,
+    #mobileDropdown,
+    .hss-mobile-bar,
+    .hss-mobile-header {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
 }
