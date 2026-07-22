@@ -3689,3 +3689,716 @@ h2.hss-project-title,
         overflow: hidden !important;
     }
 }
+
+
+/* ==========================================================================
+   OPTIMIZATION FOR ARCHITECTURAL ABOUT SECTION (MOBILE VIEW)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. SECTION CONTAINER */
+    .hss-about-section {
+        padding: 40px 18px !important; /* Padding atas bawah yang selesa */
+        overflow: hidden !important;
+    }
+
+    .hss-about-container {
+        display: flex !important;
+        flex-direction: column !important; /* Susun menegak (Teks dulu, Gambar bawah) */
+        gap: 30px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. KANDUNGAN TEKS (COLUMN 1) */
+    .about-content-col {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .about-badge {
+        font-size: 0.75rem !important;
+        padding: 4px 12px !important;
+        display: inline-block !important;
+        margin-bottom: 12px !important;
+    }
+
+    .about-main-heading {
+        font-size: 1.8rem !important; /* Saiz tajuk mesra skrin telefon */
+        line-height: 1.25 !important;
+        letter-spacing: 0 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .about-underline {
+        width: 50px !important;
+        height: 3px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .about-p {
+        font-size: 0.92rem !important; /* Saiz perenggan yang senang dibaca */
+        line-height: 1.6 !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* 3. GAMBAR & BADGE (COLUMN 2) */
+    .about-visual-col {
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+
+    .image-box-wrapper-premium {
+        position: relative !important;
+        width: 100% !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+    }
+
+    .about-img-main {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 300px !important; /* Control tinggi gambar kat mobile */
+        object-fit: cover !important;
+        display: block !important;
+        border-radius: 12px !important;
+    }
+
+    /* 4. LENCANA 'SINCE 2021' */
+    .experience-badge-premium {
+        position: absolute !important;
+        bottom: 15px !important;
+        right: 15px !important;
+        padding: 8px 14px !important;
+        background: rgba(12, 35, 64, 0.9) !important; /* Background biru pekat */
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 8px !important;
+        text-align: center !important;
+    }
+
+    .exp-number {
+        font-size: 0.65rem !important;
+        display: block !important;
+        color: #cccccc !important;
+        letter-spacing: 1px !important;
+    }
+
+    .exp-text {
+        font-size: 1.1rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+    }
+}
+
+
+/* ==========================================================================
+   FIX VISION & MISSION SECTION UNTUK MOBILE VIEW
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. SECTION CONTAINER */
+    #vision-mission.hss-about-section {
+        padding: 35px 16px !important;
+    }
+
+    #vision-mission .hss-about-container {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* Paksa TEKS kat ATAS, GAMBAR kat BAWAH */
+        gap: 25px !important;
+    }
+
+    /* 2. OVERRIDE TINGGI GAMBAR GERGASI (560px) */
+    #vision-mission .about-visual-col {
+        width: 100% !important;
+    }
+
+    #vision-mission .about-img-main {
+        height: 220px !important; /* Kecilkan dari 560px ke 220px supaya proporsional */
+        width: 100% !important;
+        object-fit: cover !important;
+        border-radius: 10px !important;
+    }
+
+    /* 3. FIX TEXT ALIGNMENT & CAPITALIZATION */
+    #vision-mission .vm-content-body p {
+        text-align: left !important;         /* Buang 'justify' supaya perkataan tak berjarak jauh */
+        text-transform: none !important;     /* Boleh tukar ke 'none' kalau tak nak paksa UPPERCASE */
+        font-size: 0.88rem !important;      /* Saiz font mesra skrin telefon */
+        line-height: 1.5 !important;
+    }
+
+    /* 4. OPTIMISE TAB TRIGGER (VISION & MISSION BUTTON) */
+    .vm-interactive-trigger {
+        padding: 12px 15px !important;
+        margin-bottom: 12px !important;
+        border-radius: 8px !important;
+    }
+
+    .vm-interactive-trigger h4 {
+        font-size: 0.85rem !important; /* Saiz tajuk tab di mobile */
+    }
+
+    /* Adjust icon bulatan */
+    .hss-premium-icon {
+        width: 32px !important;
+        height: 32px !important;
+        flex-shrink: 0 !important;
+    }
+}
+
+
+/* ==========================================================================
+   FIX INSTITUTIONAL PROFILE SECTION UNTUK MOBILE VIEW
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. CONTAINER MAIN SECTION */
+    .hss-profile-section {
+        padding: 40px 16px !important;
+        overflow: hidden !important;
+    }
+
+    .hss-profile-container {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* 2. HEADER BOX */
+    .profile-header-box {
+        margin-bottom: 25px !important;
+        text-align: left !important;
+    }
+
+    .profile-main-heading {
+        font-size: 1.6rem !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .profile-sub-heading {
+        font-size: 0.88rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* 3. GRID LAYOUT (MAIN CARD & CONTACT GRID) */
+    .profile-grid-layout {
+        display: flex !important;
+        flex-direction: column !important; /* Stack secara menegak */
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    .profile-main-card-premium,
+    .profile-details-grid-premium {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .profile-details-grid-premium {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    /* 4. KAD MAKLUMAT (KAD UTAMA, ALAMAT, EMEL, ST/CIDB) */
+    .profile-main-card-premium,
+    .profile-sub-card-premium {
+        padding: 20px 16px !important;
+        border-radius: 12px !important;
+    }
+
+    .profile-co-name {
+        font-size: 1.3rem !important;
+        word-wrap: break-word !important;
+    }
+
+    .profile-co-reg {
+        font-size: 1.05rem !important;
+    }
+
+    .info-row-item-premium {
+        flex-direction: column !important; /* Minta tajuk & value disusun atas bawah */
+        align-items: flex-start !important;
+        gap: 4px !important;
+        padding: 8px 0 !important;
+    }
+
+    .info-label-p, 
+    .info-value-p {
+        font-size: 0.85rem !important;
+    }
+
+    /* 5. LOGO SLIDER (REKABENTUK LOGO GOV/BANK) */
+    .profile-extended-container {
+        margin-top: 30px !important;
+        width: 100% !important;
+    }
+
+    .extended-title {
+        font-size: 0.9rem !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
+    }
+
+    .hss-logo-slider-premium {
+        overflow: hidden !important;
+        width: 100% !important;
+        padding: 10px 0 !important;
+    }
+
+    .gov-logo-box {
+        width: 100px !important;  /* Kecilkan tapak logo di mobile */
+        height: 50px !important;
+        margin: 0 10px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .slider-img {
+        max-width: 80% !important;
+        max-height: 35px !important;
+        object-fit: contain !important;
+    }
+
+    /* 6. AFFILIATE CARDS (AUDITOR, SECRETARY, BANK) */
+    .corporate-affiliates-grid-premium {
+        display: flex !important;
+        flex-direction: column !important; /* Stack 3 kad bawah berturut-turut */
+        gap: 15px !important;
+        margin-top: 25px !important;
+    }
+
+    .affiliate-card-premium {
+        width: 100% !important;
+        padding: 18px 15px !important;
+        box-sizing: border-box !important;
+    }
+
+    .affiliate-name-premium {
+        font-size: 0.95rem !important;
+        word-wrap: break-word !important;
+    }
+
+    .affiliate-address-premium {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* TAG CIDB & ST */
+    .accreditation-tags {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin-top: 10px !important;
+    }
+
+    .tag-cidb, .tag-st {
+        font-size: 0.75rem !important;
+        padding: 6px 10px !important;
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+
+/* ==========================================================================
+   FIX BUSINESS & EXPERTISE CHEVRON GRID UNTUK MOBILE VIEW
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. SECTION CONTAINER */
+    .hss-expertise-section {
+        padding: 40px 16px !important;
+        overflow: hidden !important;
+    }
+
+    .hss-expertise-container {
+        width: 100% !important;
+    }
+
+    /* 2. HEADER */
+    .expertise-header-box {
+        margin-bottom: 25px !important;
+        text-align: left !important;
+    }
+
+    .expertise-main-heading {
+        font-size: 1.7rem !important;
+    }
+
+    .expertise-sub-heading {
+        font-size: 0.88rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* 3. CHEVRON MATRIX GRID (STACK MENEGAK) */
+    .expertise-chevron-matrix {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        width: 100% !important;
+    }
+
+    /* 4. UNIFORM KAD CHEVRON (LEFT & RIGHT CHEVRON FIXED) */
+    .expert-chevron-card,
+    .expert-chevron-card.chevron-left,
+    .expert-chevron-card.chevron-right {
+        display: flex !important;
+        flex-direction: column !important; /* Susun menegak dari atas ke bawah */
+        width: 100% !important;
+        padding: 18px 16px !important;
+        margin: 0 !important;
+        clip-path: none !important; /* Buang efek potong serong desktop jika ada */
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+
+    /* 5. UNIFORMKAN URUTAN ELEMENT KAT MOBILE (ORDER CONTROL) */
+    
+    /* Nombor (01 - 07) Letak Paling Atas */
+    .chevron-number-wrapper {
+        order: 1 !important;
+        margin-bottom: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .chevron-num {
+        font-size: 1.4rem !important;
+        font-weight: 800 !important;
+    }
+
+    /* Tajuk & Penerangan Letak Dekat Tengah */
+    .chevron-content-core {
+        order: 2 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .chevron-content-core h4 {
+        font-size: 1.05rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 6px !important;
+    }
+
+    .chevron-content-core p {
+        font-size: 0.85rem !important;
+        line-height: 1.45 !important;
+        margin: 0 !important;
+    }
+
+    /* Bekas Gambar Letak Paling Bawah Dalam Kad */
+    .expertise-photo-wrapper {
+        order: 3 !important;
+        width: 100% !important;
+        height: 160px !important; /* Kawal tinggi gambar supaya tak berlebih */
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        margin-top: 5px !important;
+    }
+
+    .expertise-core-img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+}
+
+
+/* ==========================================================================
+   OPTIMIZATION FOR PORTFOLIO TABLE (MOBILE CARD VIEW)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    #portfolio {
+        padding: 40px 16px !important;
+    }
+
+    #portfolio .expertise-main-heading {
+        font-size: 1.6rem !important;
+    }
+
+    /* Sembunyikan Header Jadual (NO, PROJECT NAME, CONTRACT VALUE...) */
+    .hss-data-table thead {
+        display: none !important;
+    }
+
+    .hss-data-table, 
+    .hss-data-table tbody, 
+    .hss-data-table tr, 
+    .hss-data-table td {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Tukar Setiap Baris Projek Jadi Kad Khas */
+    .hss-data-table tr {
+        margin-bottom: 20px !important;
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 15px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* Format Setiap Data Dalam Kad */
+    .hss-data-table td {
+        text-align: left !important;
+        padding: 8px 0 !important;
+        border-bottom: 1px dashed #f0f0f0 !important;
+        font-size: 0.88rem !important;
+        line-height: 1.4 !important;
+    }
+
+    .hss-data-table td:last-child {
+        border-bottom: none !important;
+    }
+
+    /* Tambah Label Untuk Setiap Maklumat */
+    .hss-data-table td:nth-of-type(1)::before { content: "NO: "; font-weight: bold; color: var(--cls-royal); }
+    .hss-data-table td:nth-of-type(2)::before { content: "PROJECT: "; font-weight: bold; display: block; color: #000; margin-bottom: 2px; }
+    .hss-data-table td:nth-of-type(3)::before { content: "YEAR: "; font-weight: bold; color: #555; }
+    .hss-data-table td:nth-of-type(4)::before { content: "VALUE: "; font-weight: bold; color: #d97706; }
+    .hss-data-table td:nth-of-type(5)::before { content: "SCOPE: "; font-weight: bold; display: block; color: #555; margin-bottom: 2px; }
+    .hss-data-table td:nth-of-type(6)::before { content: "CLIENT: "; font-weight: bold; display: block; color: #555; margin-bottom: 2px; }
+
+    /* Highlight Nama Projek & Nilai Kontrak */
+    .hss-data-table td:nth-of-type(2) {
+        font-weight: 700 !important;
+        font-size: 0.95rem !important;
+        color: var(--cls-royal) !important;
+    }
+
+    .hss-data-table td:nth-of-type(4) {
+        font-weight: 700 !important;
+        color: #d97706 !important; /* Warna Emas/Amber */
+    }
+}
+
+
+/* ==========================================================================
+   OPTIMIZATION FOR PHOTO GALLERY SECTION (MOBILE VIEW)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. CONTAINER SECTION */
+    .hss-gallery-section {
+        padding: 40px 16px !important;
+        overflow: hidden !important;
+    }
+
+    /* 2. GRID SWITCH TO SINGLE COLUMN */
+    .gallery-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Stack 1 gambar berturut-turut */
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    /* 3. KAD GAMBAR GALERI */
+    .gallery-item {
+        width: 100% !important;
+        position: relative !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        background: #000000 !important; /* Background gelap khas untuk teks overlay */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .image-wrapper {
+        width: 100% !important;
+        height: 240px !important; /* Ketinggian gambar yang ideal untuk skrin phone */
+        overflow: hidden !important;
+    }
+
+    .image-wrapper img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    /* 4. TUKAR OVERLAY UNTUK TOUCHSCREEN (PAKSA NAMPAK TERUS) */
+    .gallery-item .overlay {
+        position: relative !important; /* Tukar dari absolute ke relative supaya tak tutup gambar */
+        opacity: 1 !important;          /* Sentiasa nampak di mobile */
+        visibility: visible !important;
+        transform: none !important;
+        background: #0f172a !important; /* Latar belakang biru gelap pekat/premium */
+        padding: 14px 15px !important;
+        text-align: center !important;
+    }
+
+    .overlay-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 4px !important;
+    }
+
+    .overlay-content h4 {
+        font-size: 0.88rem !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+        font-weight: 600 !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Separator '&' di mobile */
+    .premium-separator {
+        margin: 2px 0 !important;
+    }
+
+    .premium-separator span {
+        color: var(--cls-gold, #c5a059) !important;
+        font-size: 0.8rem !important;
+        font-weight: bold !important;
+    }
+}
+
+
+/* ==========================================================================
+   OPTIMIZATION FOR CURRENT PROJECTS SECTION (MOBILE VIEW)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. CONTAINER SECTION */
+    .cp-premium-showcase-section {
+        padding: 40px 16px !important;
+        overflow: hidden !important;
+    }
+
+    /* 2. HEADER SECTION */
+    .cp-header-box {
+        margin-bottom: 25px !important;
+        text-align: center !important;
+    }
+
+    .cp-main-heading {
+        font-size: 1.6rem !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* 3. GRID TUKAR KE 1 KOLOM */
+    .cp-full-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Stack kad 18 & 19 atas bawah */
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    /* 4. KAD GAMBAR PROJEK */
+    .cp-full-card {
+        width: 100% !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+        background: #ffffff !important;
+    }
+
+    .cp-image-wrapper {
+        width: 100% !important;
+        height: auto !important; /* Biar tinggi gambar ikut nisbah asal supaya dokumen penuh nampak */
+    }
+
+    .cp-image-wrapper img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: contain !important; /* Elak gambar terpotong atau terkemek */
+    }
+
+    /* 5. LIGHT OVERLAY ADJUSTMENT */
+    .cp-light-overlay {
+        opacity: 0.5 !important; /* Lembutkan bayang supaya tak tutup gambar di mobile */
+    }
+}
+
+
+/* FOOTER CSS WITH MOBILE BAR CLEARANCE */
+.cert-footer-copyright {
+    margin-top: 50px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.footer-divider {
+    width: 100%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.2), transparent);
+    margin: 0 auto 15px auto;
+}
+
+.cert-footer-copyright p {
+    color: #000000 !important;
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+    font-weight: 500 !important;
+}
+
+.footer-brand {
+    color: #000000 !important;
+    font-weight: 700 !important;
+}
+
+/* KHAS UNTUK MOBILE SCREEN */
+@media (max-width: 768px) {
+    .cert-footer-copyright {
+        margin-top: 35px !important;
+        /* Tambah ruang bawah 80px supaya teks copyright tak tertutup mobile bar */
+        padding-bottom: 80px !important; 
+    }
+}
+
+
+/* ==========================================================================
+   FIX MOBILE LOGO BAR OVERLAP & BREAKING
+   ========================================================================== */
+
+/* 1. Kunci Bar Logo Mobile Supaya Melekat Elok Dekat Bawah Tanpa Rosak */
+.hss-mobile-header,
+.hss-mobile-bar {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: #ffffff !important; /* Latar belakang putih kemas */
+    z-index: 9999 !important; /* Duduk atas sekali */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 8px 15px !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. Kawal Saiz Logo Dalam Bar Tu Supaya Tak Terkeluar / Oversized */
+.hss-mobile-header img,
+.hss-mobile-bar img {
+    max-height: 30px !important;
+    width: auto !important;
+    object-fit: contain !important;
+}
+
+/* 3. Sorokkan Bar Logo Ni Dekat Desktop (Hanya Tunjuk Dekat Mobile) */
+@media (min-width: 769px) {
+    .hss-mobile-header,
+    .hss-mobile-bar {
+        display: none !important; /* Bila buka laptop/desktop, bar ni automatik hilang */
+    }
+}
+
+/* 4. Bagi Ruang Dekat Bawah Body Supaya Content & Footer Boleh Scroll Lepas Bar */
+body {
+    padding-bottom: 60px !important;
+}
