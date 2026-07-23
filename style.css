@@ -4608,3 +4608,28 @@ h2.hss-project-title,
         color: #cbd5e1 !important;
     }
 }
+
+
+/* ==========================================================================
+   ARROW ICON DIRECTION FIX FOR MOBILE & TABLET
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* 1. STATE ASAL (BELUM TEKAN): Menunjuk ke BAWAH (🔽) */
+    .arrow-icon {
+        display: inline-block !important;
+        margin-left: 8px !important;
+        cursor: pointer !important;
+        transition: transform 0.3s ease !important;
+        
+        /* Paksa hala ke bawah jika ikon asal menghala ke atas */
+        transform: rotate(0deg) !important; 
+    }
+
+    /* 2. BILA DAH TEKAN (DROPDOWN BUKAK): Menunjuk ke ATAS (🔼) */
+    .arrow-icon.rotate-arrow,
+    .hss-has-mega.active .arrow-icon {
+        transform: rotate(180deg) !important; /* Pusing 180 darjah naik ke atas */
+    }
+}
