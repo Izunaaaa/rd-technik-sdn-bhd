@@ -275,6 +275,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Target arrow icon kat mobile menu
+    const arrowIcons = document.querySelectorAll('.arrow-icon');
+
+    arrowIcons.forEach(arrow => {
+        arrow.addEventListener('click', function(e) {
+            // Elak browser jump ke link #about
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Cari container mega dropdown
+            const navItem = this.closest('.hss-has-mega');
+            const megaDropdown = navItem.querySelector('.hss-full-mega-dropdown');
+
+            // Toggle paparan dropdown
+            if (megaDropdown) {
+                megaDropdown.classList.toggle('mobile-open');
+                this.classList.toggle('rotate-arrow');
+            }
+        });
+    });
+});
 </script>
 </body>
 </html>
