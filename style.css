@@ -3035,29 +3035,108 @@ html, body {
     z-index: 2;
 }
 
-.hss-hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: scale(1);
-    transition: transform 7s ease-out;
+/* ==========================================================================
+   HSS HERO SLIDER - MOBILE & TABLET ENHANCEMENT (COMPLETE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* 1. CONTAINER UTAMA HERO (KUNCI SAIZ 762px x 588px) */
+    .hss-hero-container {
+        width: 100% !important;
+        max-width: 762px !important;  /* Lebar sasaran */
+        height: 588px !important;      /* Tinggi sasaran */
+        min-height: auto !important;
+        margin: 0 auto !important;     /* Auto-center pada tablet */
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .hss-hero-img-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* 2. TETAPAN IMEJ HERO & EFEK ZOOM */
+    .hss-hero-img {
+        width: 100% !important;
+        height: 588px !important;
+        max-width: 762px !important;
+        object-fit: cover !important;  /* Elak gambar ter-distort */
+        object-position: center !important;
+        transform: scale(1);
+        transition: transform 7s ease-out;
+    }
+
+    .hss-slide.active .hss-hero-img {
+        transform: scale(1.08) !important; /* Dynamic slow zoom */
+    }
+
+    /* 3. CONTAINER TEKS (PAKSA POSISI KANAN BAWAH) */
+    .hss-text-overlay {
+        position: absolute !important;
+        bottom: 80px !important;       /* Jarak dari bawah */
+        right: 30px !important;        /* Kunci tepat rapat ke tebing kanan */
+        left: auto !important;         /* Padamkan sebarang setting left */
+        top: auto !important;          /* Padamkan sebarang setting top */
+        transform: none !important;    /* Matikan auto-center translate */
+        width: auto !important;
+        max-width: 85% !important;     /* Elak teks panjang melimpah keluar */
+        z-index: 10 !important;
+        pointer-events: none;
+        overflow: hidden !important;   /* Masking untuk efek slide */
+        text-align: right !important;  /* Teks dirapatkan ke kanan */
+    }
+
+    .title-mask-track {
+        display: block !important;
+        text-align: right !important;
+        width: 100% !important;
+    }
+
+    /* GAYA TAJUK TEKS KAT MOBILE & TABLET */
+    .hss-project-title,
+    .hss-project-title strong,
+    .title-mask-track strong {
+        font-family: "Barlow Condensed", sans-serif !important;
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        letter-spacing: 0px !important;
+        text-align: right !important;
+        display: block !important;
+        margin: 0 !important;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8) !important;
+    }
 }
 
-.hss-slide.active .hss-hero-img {
-    transform: scale(1.08); /* Dynamic slow zoom */
-}
+/* ==========================================================================
+   LARASAN KHUSUS PHONES (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
 
-/* CONTAINER TEKS (FORCE PAKSA POSISI KANAN SEKALI) */
-.hss-text-overlay {
-    position: absolute !important;
-    bottom: 80px !important;       /* Atas sikit dari butang Whatsapp/Taskbar */
-    right: 30px !important;        /* KUNCI TEPAT KAT KANAN SEKALI */
-    left: auto !important;         /* BUANG terus sebarang setting LEFT */
-    width: auto !important;
-    z-index: 10 !important;
-    pointer-events: none;
-    overflow: hidden !important;   /* Masking untuk efek slide */
-    text-align: right !important;  /* Teks melekat rapat ke tebing kanan */
+    /* NISBAH SKRIN RESPONSIIF (762 : 588) UNTUK PHONES */
+    .hss-hero-container {
+        height: auto !important;
+        aspect-ratio: 762 / 588 !important; 
+    }
+
+    .hss-hero-img {
+        height: 100% !important;
+    }
+
+    /* LARAS POSISI TEKS BILA BUKA KAT PHONE */
+    .hss-text-overlay {
+        bottom: 45px !important;
+        right: 20px !important;
+    }
+
+    .hss-project-title,
+    .hss-project-title strong,
+    .title-mask-track strong {
+        font-size: 1.75rem !important; /* Kecilkan saiz font supaya ngam kat phone */
+    }
 }
 
 /* ==========================================================================
@@ -4631,5 +4710,87 @@ h2.hss-project-title,
     .arrow-icon.rotate-arrow,
     .hss-has-mega.active .arrow-icon {
         transform: rotate(180deg) !important; /* Pusing 180 darjah naik ke atas */
+    }
+}
+
+
+/* ==========================================================================
+   REVOLUTION SLIDER - MOBILE & TABLET ENHANCEMENT (HSS STYLE)
+   ========================================================================== */
+
+/* 1. TABLET VIEW (< 1024px) */
+@media (max-width: 1024px) {
+
+    /* Pastikan container slider tak overflow */
+    #rev_slider_5_1,
+    #rev_slider_5_1_wrapper,
+    .rev_slider {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Memaksa wrapper layer teks ke kedudukan KIRI */
+    #rev_slider_5_1 .rs-parallax-wrap {
+        left: 20px !important;
+        top: auto !important;
+        bottom: 80px !important; /* Duduk kat bahagian bawah skrin tablet */
+        position: absolute !important;
+        display: block !important;
+        width: calc(100% - 40px) !important;
+        pointer-events: auto !important;
+    }
+
+    /* Penyesuaian Layer Teks Slider */
+    #rev_slider_5_1 .rs-layer,
+    #rev_slider_5_1 .cspt-head-size {
+        font-family: "Barlow Condensed", sans-serif !important;
+        font-size: 48px !important;
+        line-height: 52px !important;
+        font-weight: 700 !important;
+        color: #ffffff !important; /* Paksa warna putih supaya jelas di atas gambar */
+        text-align: left !important;
+        white-space: normal !important; /* Supaya tajuk panjang auto-wrap bawah */
+        word-break: break-word !important;
+        height: auto !important;
+        width: 100% !important;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8) !important;
+    }
+
+    #rev_slider_5_1 .rs-layer strong,
+    #rev_slider_5_1 h1.rs-layer {
+        font-weight: 700 !important;
+        text-align: left !important;
+        color: #ffffff !important;
+    }
+}
+
+/* 2. MOBILE PHONE VIEW (< 768px) */
+@media (max-width: 768px) {
+
+    #rev_slider_5_1 .rs-parallax-wrap {
+        left: 15px !important;
+        bottom: 60px !important; /* Rendahkan sikit untuk skrin fon */
+        width: calc(100% - 30px) !important;
+    }
+
+    #rev_slider_5_1 .rs-layer,
+    #rev_slider_5_1 .cspt-head-size {
+        font-size: 34px !important;  /* Saiz muat-muat untuk skrin telefon */
+        line-height: 38px !important;
+    }
+}
+
+/* 3. PHONE KECIL (< 480px) */
+@media (max-width: 480px) {
+
+    #rev_slider_5_1 .rs-parallax-wrap {
+        left: 12px !important;
+        bottom: 45px !important;
+    }
+
+    #rev_slider_5_1 .rs-layer,
+    #rev_slider_5_1 .cspt-head-size {
+        font-size: 26px !important;  /* Elak tajuk panjang macam 'PERKESO - Rehabilitation Centre' terpotong */
+        line-height: 30px !important;
     }
 }
