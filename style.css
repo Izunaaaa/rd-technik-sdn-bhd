@@ -4355,3 +4355,188 @@ h2.hss-project-title,
     }
 }
 
+
+/* ==========================================================================
+   MOBILE & TABLET VIEW - EXACT BOTTOM-LEFT POSITION (LIKE HSS SITE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* 1. BEKAS TEKS (TOLAK KE KIRI BAWAH) */
+    .hss-text-overlay {
+        position: absolute !important;
+        bottom: 120px !important;         /* Jarak dari bawah skrin */
+        left: 25px !important;            /* Jarak rapat dari belah kiri */
+        top: auto !important;             /* Matikan top */
+        right: auto !important;           /* Matikan right */
+        transform: none !important;       /* Matikan auto-center translate */
+        
+        width: auto !important;
+        max-width: 85% !important;        /* Elak teks panjang sangat langgar tepi kanan */
+        text-align: left !important;
+        z-index: 10 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .title-mask-track {
+        display: block !important;
+        text-align: left !important;
+    }
+
+    /* 2. GAYA TEKS (BARLOW CONDENSED, WHITE, BOLD) */
+    .hss-project-title,
+    .hss-project-title strong,
+    .title-mask-track strong {
+        font-family: "Barlow Condensed", sans-serif !important;
+        display: block !important;
+        text-align: left !important;      /* Rata kiri */
+        font-size: 2.8rem !important;     /* Saiz tebal & jelas kat mobile/tab */
+        line-height: 1.1 !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;        /* Warna putih solid */
+        letter-spacing: 0px !important;
+        margin: 0 !important;
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7) !important; /* Bayang hitam bagi nampak bila lalu background terang */
+        word-break: break-word !important;
+    }
+}
+
+/* LARASAN UNTUK PHONE SKRIN KECIL (< 480px) */
+@media (max-width: 480px) {
+    .hss-text-overlay {
+        bottom: 80px !important;  /* Rendahkan sikit untuk skrin fon comel */
+        left: 20px !important;
+    }
+
+    .hss-project-title,
+    .hss-project-title strong,
+    .title-mask-track strong {
+        font-size: 2.2rem !important; /* Kecilkan sikit saiz font supaya tak over */
+    }
+}
+
+
+/* ==========================================================================
+   HSS ABOUT SECTION - MOBILE & TABLET ENHANCEMENT
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* 1. SECTION CONTAINER */
+    .hss-about-section {
+        padding: 60px 20px !important; /* Kurangkan padding atas/bawah & tepi */
+        overflow: hidden !important;
+    }
+
+    .hss-about-container {
+        display: flex !important;
+        flex-direction: column !important; /* Susun teks dulu, gambar kat bawah */
+        gap: 40px !important;               /* Jarak antara bahagian teks & gambar */
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* 2. TEKS & TAJUK */
+    .about-content-col {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .about-badge {
+        font-size: 0.8rem !important;
+        padding: 6px 14px !important;
+        letter-spacing: 1px !important;
+        display: inline-block !important;
+        margin-bottom: 15px !important;
+    }
+
+    .about-main-heading {
+        font-size: 2.2rem !important; /* Saiz tajuk ngam untuk tablet/phone */
+        line-height: 1.25 !important;
+        margin-bottom: 15px !important;
+        word-break: break-word !important;
+    }
+
+    .about-underline {
+        width: 60px !important;
+        height: 3px !important;
+        margin-bottom: 25px !important;
+    }
+
+    .about-p {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 18px !important;
+    }
+
+    /* 3. BAHAGIAN GAMBAR & BADGE (IMAGE COLUMN) */
+    .about-visual-col {
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+
+    .image-box-wrapper-premium {
+        position: relative !important;
+        width: 100% !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+    }
+
+    .about-img-main {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 400px !important;
+        object-fit: cover !important;
+        display: block !important;
+        border-radius: 12px !important;
+    }
+
+    /* Lencana 'SINCE 2021' */
+    .experience-badge-premium {
+        position: absolute !important;
+        bottom: 15px !important;
+        right: 15px !important;
+        padding: 10px 16px !important;
+        background: rgba(15, 23, 42, 0.9) !important; /* Latar gelap kemas */
+        backdrop-filter: blur(5px) !important;
+        border-radius: 8px !important;
+        text-align: center !important;
+        z-index: 5 !important;
+    }
+
+    .exp-number {
+        font-size: 0.75rem !important;
+        display: block !important;
+        color: #94a3b8 !important;
+        letter-spacing: 1px !important;
+    }
+
+    .exp-text {
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+        display: block !important;
+        line-height: 1 !important;
+    }
+}
+
+/* 4. LARASAN TAMBAHAN UNTUK PHONE KECIL (< 480px) */
+@media (max-width: 480px) {
+    .hss-about-section {
+        padding: 40px 15px !important;
+    }
+
+    .about-main-heading {
+        font-size: 1.75rem !important; /* Kecilkan sikit tajuk kat skrin fon comel */
+    }
+
+    .about-p {
+        font-size: 0.9rem !important;
+    }
+
+    .about-img-main {
+        max-height: 280px !important; /* Kurangkan tinggi gambar kat phone */
+    }
+}
